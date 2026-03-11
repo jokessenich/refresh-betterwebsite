@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Better.Website — Quality Web Design, Without the Wait</title>
-<meta name="description" content="Get a complimentary homepage mockup in 48 hours. Better Website builds focused, high-quality websites for service-based businesses.">
+<meta name="description" content="Get a complimentary homepage mockup in 48 hours. Better.Website builds focused, high-quality websites for service-based businesses.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1915'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='20' font-weight='bold' fill='%23faf9f7'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -55,7 +56,7 @@ tailwind.config = {
 </script>
 <style>
   /* Base */
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   body { font-family: 'DM Sans', sans-serif; color: #1a1915; background: #faf9f7; }
 
   /* Noise texture overlay */
@@ -144,7 +145,7 @@ tailwind.config = {
   .comparison-after {
     position: absolute;
     inset: 0;
-    clip-path: inset(0 0 0 50%);
+    clip-path: inset(0 0 0 33%);
   }
   .comparison-handle {
     position: absolute;
@@ -203,6 +204,16 @@ tailwind.config = {
   .pricing-popular {
     box-shadow: 0 0 0 2px #1a1915, 0 12px 40px rgba(26, 25, 21, 0.12);
   }
+
+  /* Project tab active state */
+  .active-tab {
+    pointer-events: none;
+  }
+
+  /* Smooth image swap */
+  #beforeImg, #afterImg {
+    transition: opacity 0.3s ease;
+  }
 </style>
 </head>
 <body class="antialiased">
@@ -210,37 +221,88 @@ tailwind.config = {
 <!-- ========== NAV ========== -->
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-50/80 backdrop-blur-sm">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 sm:h-18 flex items-center justify-between">
-    <a href="https://better.website" class="flex items-center gap-2.5 group">
+    <a href="https://www.better.website" class="flex items-center gap-2.5 group flex-shrink-0">
       <div class="w-8 h-8 rounded-lg bg-brand-950 flex items-center justify-center">
         <span class="text-brand-50 font-serif text-base leading-none mt-px">B</span>
       </div>
       <span class="text-sm font-semibold tracking-tight text-brand-950 hidden sm:inline">Better.Website</span>
     </a>
-    <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">
-      Get Your Mockup
-    </a>
+    <!-- Desktop nav links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#work" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Work</a>
+      <a href="#process" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">How It Works</a>
+      <a href="#why-us" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Why Us</a>
+      <a href="#pricing" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Pricing</a>
+      <a href="#faq" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">FAQ</a>
+      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">
+        Get Your Mockup
+      </a>
+    </div>
+    <!-- Mobile menu button -->
+    <div class="flex items-center gap-3 md:hidden">
+      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">
+        Get Your Mockup
+      </a>
+      <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-brand-100 transition-colors" aria-label="Toggle menu">
+        <svg id="menuIconOpen" class="w-5 h-5 text-brand-950" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"/></svg>
+        <svg id="menuIconClose" class="w-5 h-5 text-brand-950 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile dropdown -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-brand-200 bg-brand-50/95 backdrop-blur-lg">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex flex-col gap-1">
+      <a href="#work" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100 transition-colors">Work</a>
+      <a href="#process" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100 transition-colors">How It Works</a>
+      <a href="#why-us" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100 transition-colors">Why Us</a>
+      <a href="#pricing" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100 transition-colors">Pricing</a>
+      <a href="#faq" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100 transition-colors">FAQ</a>
+    </div>
   </div>
 </nav>
 
 <!-- ========== HERO ========== -->
 <section class="noise relative overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 bg-brand-50">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="max-w-3xl">
-      <div class="reveal">
-        <span class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-brand-600 mb-6">Complimentary Mockup — 48 Hours</span>
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <!-- Left: Copy -->
+      <div class="lg:w-1/2 flex-shrink-0">
+        <div class="reveal">
+          <span class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-brand-600 mb-6">Complimentary Mockup — 48 Hours</span>
+        </div>
+        <h1 class="reveal reveal-delay-1 font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl text-brand-950 leading-[1.08] mb-6">
+          Your website should work as hard as you do.
+        </h1>
+        <p class="reveal reveal-delay-2 text-lg sm:text-xl text-brand-600 leading-relaxed mb-10 max-w-xl">
+          We'll redesign your homepage in 48 hours — at no cost and with no commitment. See what's possible when your site finally matches the quality of your work.
+        </p>
+        <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          <a href="#mockup" class="btn-glow inline-flex items-center px-8 py-3.5 bg-brand-950 text-brand-50 text-base font-medium rounded-full hover:bg-brand-900 transition-colors">
+            Get Your Free Mockup
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <span class="text-sm text-brand-500">No payment info. No sales call. Just results.</span>
+        </div>
       </div>
-      <h1 class="reveal reveal-delay-1 font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-950 leading-[1.08] mb-6">
-        Your website should work as hard as you do.
-      </h1>
-      <p class="reveal reveal-delay-2 text-lg sm:text-xl text-brand-600 leading-relaxed mb-10 max-w-xl">
-        We'll redesign your homepage in 48 hours — at no cost and with no commitment. See what's possible when your site finally matches the quality of your work.
-      </p>
-      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-        <a href="#mockup" class="btn-glow inline-flex items-center px-8 py-3.5 bg-brand-950 text-brand-50 text-base font-medium rounded-full hover:bg-brand-900 transition-colors">
-          Get Your Free Mockup
-          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-        <span class="text-sm text-brand-500">No payment info. No sales call. Just results.</span>
+      <!-- Right: Stacked browser mockups -->
+      <div class="reveal reveal-delay-2 lg:w-1/2 relative">
+        <div class="relative" style="animation: subtleFloat 6s ease-in-out infinite;">
+          <!-- Back card (before - peeking out) -->
+          <div class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-[85%] rounded-xl overflow-hidden border border-brand-300 shadow-lg opacity-50 rotate-[-3deg] z-0">
+            <div class="flex items-center gap-1.5 px-3 py-2 bg-brand-200 border-b border-brand-300">
+              <div class="flex gap-1"><div class="w-2 h-2 rounded-full bg-brand-400"></div><div class="w-2 h-2 rounded-full bg-brand-400"></div><div class="w-2 h-2 rounded-full bg-brand-400"></div></div>
+            </div>
+            <img src="./before-fitclub.png" alt="Before redesign" class="w-full h-auto block">
+          </div>
+          <!-- Front card (after) -->
+          <div class="relative rounded-xl overflow-hidden border border-brand-200 shadow-2xl shadow-brand-950/10 z-10">
+            <div class="flex items-center gap-2 px-3 py-2 bg-brand-100/80 border-b border-brand-200">
+              <div class="flex gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div></div>
+              <div class="flex-1 flex justify-center"><div class="px-3 py-0.5 rounded-md bg-brand-50 text-[10px] text-brand-500 font-mono">fenceco-boulder.com</div></div>
+            </div>
+            <img src="./after-fitclub.png" alt="After redesign by Better.Website" class="w-full h-auto block">
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -248,13 +310,21 @@ tailwind.config = {
   <div class="absolute top-20 right-0 w-96 h-96 bg-gradient-to-bl from-brand-200/30 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 </section>
 
-<!-- ========== BEFORE / AFTER ========== -->
-<section class="py-16 sm:py-24 bg-brand-50">
-  <div class="max-w-4xl mx-auto px-5 sm:px-8">
+<!-- ========== BEFORE / AFTER SHOWCASE ========== -->
+<section id="work" class="py-16 sm:py-24 bg-brand-50">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-10">
-      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">See the Difference</span>
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Real Results</span>
       <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Same business. New first impression.</h2>
     </div>
+
+    <!-- Project tabs -->
+    <div class="reveal flex justify-center gap-2 mb-8">
+      <button onclick="switchProject(1)" class="project-tab active-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-950 text-brand-50" data-index="1">Fitness Club</button>
+      <button onclick="switchProject(0)" class="project-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-100 text-brand-600 hover:bg-brand-200" data-index="0">Photo Booth</button>
+      <button onclick="switchProject(2)" class="project-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-100 text-brand-600 hover:bg-brand-200" data-index="2">Fence Company</button>
+    </div>
+
     <div class="reveal reveal-delay-1">
       <!-- Browser chrome -->
       <div class="rounded-2xl overflow-hidden border border-brand-200 shadow-lg shadow-brand-950/5 bg-white">
@@ -266,21 +336,21 @@ tailwind.config = {
             <div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div>
           </div>
           <div class="flex-1 flex justify-center">
-            <div class="px-4 py-1 rounded-md bg-brand-50 text-xs text-brand-500 font-mono">yourwebsite.com</div>
+            <div class="px-4 py-1 rounded-md bg-brand-50 text-xs text-brand-500 font-mono" id="browserUrl">360fitclub.com</div>
           </div>
         </div>
         <!-- Comparison area -->
-<div class="comparison-container relative" id="comparisonSlider">
-  <!-- Before -->
-  <div class="relative w-full">
-    <img src="./before.png" alt="Before: Original website" class="w-full h-auto block select-none" draggable="false">
-    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-brand-600 border border-brand-200 z-[5]">Before</div>
-  </div>
-  <!-- After -->
-  <div class="comparison-after" id="afterPanel">
-    <img src="./after.png" alt="After: Redesigned website" class="absolute inset-0 w-full h-full object-cover select-none" draggable="false">
-    <div class="absolute top-4 right-4 bg-brand-950/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-brand-100 border border-brand-700 z-[5]">After</div>
-  </div>
+        <div class="comparison-container relative" id="comparisonSlider">
+          <!-- Before -->
+          <div class="relative w-full">
+            <img id="beforeImg" src="./before-fitclub.png" alt="Before: Original website" class="w-full h-auto block select-none" draggable="false">
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-brand-600 border border-brand-200 z-[5]">Before</div>
+          </div>
+          <!-- After -->
+          <div class="comparison-after" id="afterPanel" >
+            <img id="afterImg" src="./after-fitclub.png" alt="After: Redesigned website" class="absolute inset-0 w-full h-full object-cover select-none" draggable="false">
+            <div class="absolute top-4 right-4 bg-brand-950/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-brand-100 border border-brand-700 z-[5]">After</div>
+          </div>
           <!-- Handle -->
           <div class="comparison-handle" id="compHandle">
             <div class="comparison-handle-circle">
@@ -346,7 +416,7 @@ tailwind.config = {
 </section>
 
 <!-- ========== PROCESS ========== -->
-<section class="py-16 sm:py-24 bg-white">
+<section id="process" class="py-16 sm:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
       <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">How It Works</span>
@@ -386,7 +456,7 @@ tailwind.config = {
 </section>
 
 <!-- ========== SPEED & ADVANTAGE ========== -->
-<section class="py-16 sm:py-24 bg-brand-950 text-brand-100">
+<section id="why-us" class="py-16 sm:py-24 bg-brand-950 text-brand-100">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
       <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Why Us</span>
@@ -490,13 +560,24 @@ tailwind.config = {
 </section>
 
 <!-- ========== PRICING ========== -->
-<section class="py-16 sm:py-24 bg-white">
+<section id="pricing" class="py-16 sm:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="reveal text-center mb-14">
+    <div class="reveal text-center mb-10">
       <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Simple Pricing</span>
-      <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">One monthly fee. Everything included.</h2>
-      <p class="text-brand-600 mt-4 max-w-lg mx-auto text-[15px] leading-relaxed">No upfront costs. No hidden fees. Pick a plan, and your website is designed, built, hosted, and maintained — all in one subscription.</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">One subscription. Everything included.</h2>
+      <p class="text-brand-600 mt-4 max-w-lg mx-auto text-[15px] leading-relaxed">No hidden fees. Pick a plan, and your website is designed, built, hosted, and maintained — all in one subscription.</p>
     </div>
+
+    <!-- Monthly / Annual Toggle -->
+    <div class="reveal flex items-center justify-center gap-4 mb-12">
+      <span id="labelMonthly" class="text-sm font-semibold text-brand-950 transition-colors">Monthly</span>
+      <button id="billingToggle" onclick="toggleBilling()" class="relative w-14 h-8 rounded-full bg-brand-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-950/20" aria-label="Toggle annual billing">
+        <span id="toggleDot" class="absolute top-1 left-1 w-6 h-6 rounded-full bg-brand-950 transition-transform duration-300 ease-out shadow-sm"></span>
+      </button>
+      <span id="labelAnnual" class="text-sm font-medium text-brand-500 transition-colors">Annual</span>
+      <span id="saveBadge" class="text-xs font-semibold bg-green-100 text-green-700 px-2.5 py-1 rounded-full opacity-0 transition-opacity duration-300">Save up to 16%</span>
+    </div>
+
     <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
       <!-- Starter -->
       <div class="reveal card-lift bg-brand-50 border border-brand-200 rounded-2xl p-7 sm:p-8 flex flex-col">
@@ -505,8 +586,13 @@ tailwind.config = {
           <p class="text-sm text-brand-500">Perfect for getting online fast</p>
         </div>
         <div class="mb-6">
-          <span class="font-serif text-4xl text-brand-950">$299</span>
-          <span class="text-brand-500 text-sm">/month</span>
+          <div class="price-display" data-monthly="299" data-annual="2,999">
+            <span class="font-serif text-4xl text-brand-950 price-amount">$299</span>
+            <span class="text-brand-500 text-sm price-period">/month</span>
+          </div>
+          <div class="annual-note hidden mt-1.5">
+            <span class="text-xs text-green-600 font-medium">$250/mo equivalent — save $589/yr</span>
+          </div>
         </div>
         <ul class="space-y-3 mb-8 flex-1">
           <li class="flex items-start gap-3 text-[15px] text-brand-700">
@@ -544,8 +630,13 @@ tailwind.config = {
           <p class="text-sm text-brand-500">For businesses ready to scale</p>
         </div>
         <div class="mb-6">
-          <span class="font-serif text-4xl text-brand-950">$699</span>
-          <span class="text-brand-500 text-sm">/month</span>
+          <div class="price-display" data-monthly="599" data-annual="5,999">
+            <span class="font-serif text-4xl text-brand-950 price-amount">$599</span>
+            <span class="text-brand-500 text-sm price-period">/month</span>
+          </div>
+          <div class="annual-note hidden mt-1.5">
+            <span class="text-xs text-green-600 font-medium">$500/mo equivalent — save $1,189/yr</span>
+          </div>
         </div>
         <ul class="space-y-3 mb-8 flex-1">
           <li class="flex items-start gap-3 text-[15px] text-brand-700">
@@ -584,8 +675,13 @@ tailwind.config = {
           <p class="text-sm text-brand-500">Full-service, white-glove treatment</p>
         </div>
         <div class="mb-6">
-          <span class="font-serif text-4xl text-brand-950">$999</span>
-          <span class="text-brand-500 text-sm">/month</span>
+          <div class="price-display" data-monthly="1,299" data-annual="12,999">
+            <span class="font-serif text-4xl text-brand-950 price-amount">$1,299</span>
+            <span class="text-brand-500 text-sm price-period">/month</span>
+          </div>
+          <div class="annual-note hidden mt-1.5">
+            <span class="text-xs text-green-600 font-medium">$1,083/mo equivalent — save $2,589/yr</span>
+          </div>
         </div>
         <ul class="space-y-3 mb-8 flex-1">
           <li class="flex items-start gap-3 text-[15px] text-brand-700">
@@ -623,7 +719,7 @@ tailwind.config = {
 </section>
 
 <!-- ========== FAQ ========== -->
-<section class="py-16 sm:py-24 bg-brand-50">
+<section id="faq" class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-2xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
       <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Questions</span>
@@ -734,11 +830,11 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
     <div class="flex items-center gap-3">
       <div class="w-7 h-7 rounded-lg bg-brand-800 flex items-center justify-center">
-        <span class="text-brand-300 font-serif text-sm leading-none mt-px">C</span>
+        <span class="text-brand-300 font-serif text-sm leading-none mt-px">B</span>
       </div>
       <span class="text-sm text-brand-500">Quality, without the wait.</span>
     </div>
-    <span class="text-xs text-brand-600">&copy; 2026 Better Website. All rights reserved.</span>
+    <span class="text-xs text-brand-600">&copy; 2026 Better.Website. All rights reserved.</span>
   </div>
 </footer>
 
@@ -863,6 +959,130 @@ async function submitForm() {
 function retryForm() {
   document.getElementById('errorState').classList.add('hidden');
   submitForm();
+}
+
+// ==========================================
+// BILLING TOGGLE (Monthly / Annual)
+// ==========================================
+let isAnnual = false;
+
+// ==========================================
+// PROJECT SHOWCASE SWITCHER
+// ==========================================
+const projects = [
+  { before: './before-fitclub.png', after: './after-fitclub.png', url: '360fitclub.com' },
+  { before: './before-3klicks.png', after: './after-3klicks.png', url: '3klicksphotobooth.com' },
+  { before: './before-fence.png', after: './after-fence.png', url: 'fencingboulder.com' }
+];
+let currentProject = 0;
+
+function switchProject(index) {
+  if (index === currentProject) return;
+  currentProject = index;
+
+  // Update tab styles
+  document.querySelectorAll('.project-tab').forEach((tab, i) => {
+    if (i === index) {
+      tab.classList.remove('bg-brand-100', 'text-brand-600', 'hover:bg-brand-200');
+      tab.classList.add('bg-brand-950', 'text-brand-50', 'active-tab');
+    } else {
+      tab.classList.remove('bg-brand-950', 'text-brand-50', 'active-tab');
+      tab.classList.add('bg-brand-100', 'text-brand-600', 'hover:bg-brand-200');
+    }
+  });
+
+  // Update images and URL
+  const p = projects[index];
+  document.getElementById('beforeImg').src = p.before;
+  document.getElementById('afterImg').src = p.after;
+  document.getElementById('browserUrl').textContent = p.url;
+
+  // Reset slider to 50%
+  const afterPanel = document.getElementById('afterPanel');
+  const handle = document.getElementById('compHandle');
+  afterPanel.style.clipPath = 'inset(0 0 0 50%)';
+  handle.style.left = '50%';
+}
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
+let mobileMenuOpen = false;
+function toggleMobileMenu() {
+  mobileMenuOpen = !mobileMenuOpen;
+  const menu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+  if (mobileMenuOpen) {
+    menu.classList.remove('hidden');
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+  } else {
+    menu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+}
+function closeMobileMenu() {
+  mobileMenuOpen = false;
+  document.getElementById('mobileMenu').classList.add('hidden');
+  document.getElementById('menuIconOpen').classList.remove('hidden');
+  document.getElementById('menuIconClose').classList.add('hidden');
+}
+
+function toggleBilling() {
+  isAnnual = !isAnnual;
+  const dot = document.getElementById('toggleDot');
+  const labelMonthly = document.getElementById('labelMonthly');
+  const labelAnnual = document.getElementById('labelAnnual');
+  const saveBadge = document.getElementById('saveBadge');
+  const toggle = document.getElementById('billingToggle');
+
+  if (isAnnual) {
+    dot.style.transform = 'translateX(24px)';
+    dot.classList.remove('bg-brand-950');
+    dot.classList.add('bg-brand-50');
+    toggle.classList.remove('bg-brand-200');
+    toggle.classList.add('bg-brand-950');
+    labelMonthly.classList.remove('font-semibold', 'text-brand-950');
+    labelMonthly.classList.add('font-medium', 'text-brand-500');
+    labelAnnual.classList.remove('font-medium', 'text-brand-500');
+    labelAnnual.classList.add('font-semibold', 'text-brand-950');
+    saveBadge.style.opacity = '1';
+  } else {
+    dot.style.transform = 'translateX(0)';
+    dot.classList.remove('bg-brand-50');
+    dot.classList.add('bg-brand-950');
+    toggle.classList.remove('bg-brand-950');
+    toggle.classList.add('bg-brand-200');
+    labelMonthly.classList.remove('font-medium', 'text-brand-500');
+    labelMonthly.classList.add('font-semibold', 'text-brand-950');
+    labelAnnual.classList.remove('font-semibold', 'text-brand-950');
+    labelAnnual.classList.add('font-medium', 'text-brand-500');
+    saveBadge.style.opacity = '0';
+  }
+
+  // Update prices
+  document.querySelectorAll('.price-display').forEach(el => {
+    const amount = el.querySelector('.price-amount');
+    const period = el.querySelector('.price-period');
+    if (isAnnual) {
+      amount.textContent = '$' + el.dataset.annual;
+      period.textContent = '/year';
+    } else {
+      amount.textContent = '$' + el.dataset.monthly;
+      period.textContent = '/month';
+    }
+  });
+
+  // Toggle annual savings notes
+  document.querySelectorAll('.annual-note').forEach(el => {
+    if (isAnnual) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  });
 }
 </script>
 </body>
