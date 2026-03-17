@@ -26,7 +26,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1440006527864453&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
   theme: {
@@ -55,11 +55,8 @@ tailwind.config = {
 }
 </script>
 <style>
-  /* Base */
   html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   body { font-family: 'DM Sans', sans-serif; color: #1a1915; background: #faf9f7; }
-
-  /* Noise texture overlay */
   .noise::before {
     content: '';
     position: absolute;
@@ -72,153 +69,41 @@ tailwind.config = {
     z-index: 1;
   }
   .noise > * { position: relative; z-index: 2; }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
-
-  /* Button glow */
-  .btn-glow {
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .btn-glow:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(26, 25, 21, 0.18);
-  }
-  .btn-glow:active {
-    transform: translateY(0);
-  }
-
-  /* Nav shadow */
-  .nav-scrolled {
-    box-shadow: 0 1px 12px rgba(26, 25, 21, 0.08);
-    background: rgba(250, 249, 247, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-
-  /* Card lift */
-  .card-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .card-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(26, 25, 21, 0.1);
-  }
-
-  /* FAQ */
+  .btn-glow { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(26, 25, 21, 0.18); }
+  .btn-glow:active { transform: translateY(0); }
+  .nav-scrolled { box-shadow: 0 1px 12px rgba(26, 25, 21, 0.08); background: rgba(250, 249, 247, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .card-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26, 25, 21, 0.1); }
   details summary { cursor: pointer; list-style: none; }
   details summary::-webkit-details-marker { display: none; }
   details summary::marker { display: none; }
-  details summary .faq-icon {
-    transition: transform 0.3s ease;
-  }
-  details[open] summary .faq-icon {
-    transform: rotate(45deg);
-  }
-  details .faq-body {
-    animation: faqOpen 0.3s ease;
-  }
-  @keyframes faqOpen {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Before/After slider */
-  .comparison-container {
-    position: relative;
-    overflow: hidden;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
-  }
-  .comparison-after {
-    position: absolute;
-    inset: 0;
-    clip-path: inset(0 0 0 33%);
-  }
-  .comparison-handle {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 3px;
-    background: #1a1915;
-    transform: translateX(-50%);
-    z-index: 10;
-    cursor: ew-resize;
-  }
-  .comparison-handle-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #1a1915;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 12px rgba(26,25,21,0.25);
-    z-index: 11;
-    cursor: ew-resize;
-  }
-  .drag-hint {
-    transition: opacity 0.5s ease;
-  }
-
-  /* Spinner */
-  .spinner {
-    width: 20px; height: 20px;
-    border: 2px solid rgba(250,249,247,0.3);
-    border-top-color: #faf9f7;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-  }
+  details summary .faq-icon { transition: transform 0.3s ease; }
+  details[open] summary .faq-icon { transform: rotate(45deg); }
+  details .faq-body { animation: faqOpen 0.3s ease; }
+  @keyframes faqOpen { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .comparison-container { position: relative; overflow: hidden; user-select: none; -webkit-user-select: none; touch-action: none; }
+  .comparison-after { position: absolute; inset: 0; clip-path: inset(0 0 0 33%); }
+  .comparison-handle { position: absolute; top: 0; bottom: 0; left: 33%; width: 3px; background: #1a1915; transform: translateX(-33%); z-index: 10; cursor: ew-resize; }
+  .comparison-handle-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: #1a1915; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(26,25,21,0.25); z-index: 11; cursor: ew-resize; }
+  .drag-hint { transition: opacity 0.5s ease; }
+  .spinner { width: 20px; height: 20px; border: 2px solid rgba(250,249,247,0.3); border-top-color: #faf9f7; border-radius: 50%; animation: spin 0.6s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* Focus styles */
-  input:focus, textarea:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(26,25,21,0.12);
-  }
-
-  /* Subtle float animation for hero */
-  @keyframes subtleFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-
-  /* Pricing card popular ring */
-  .pricing-popular {
-    box-shadow: 0 0 0 2px #1a1915, 0 12px 40px rgba(26, 25, 21, 0.12);
-  }
-
-  /* Project tab active state */
-  .active-tab {
-    pointer-events: none;
-  }
-
-  /* Smooth image swap */
-  #beforeImg, #afterImg {
-    transition: opacity 0.3s ease;
-  }
+  input:focus, textarea:focus { outline: none; box-shadow: 0 0 0 3px rgba(26,25,21,0.12); }
+  @keyframes subtleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .pricing-popular { box-shadow: 0 0 0 2px #1a1915, 0 12px 40px rgba(26, 25, 21, 0.12); }
+  .active-tab { pointer-events: none; }
+  #beforeImg, #afterImg { transition: opacity 0.3s ease; }
 </style>
 </head>
 <body class="antialiased">
 
-<!-- ========== NAV ========== -->
+<!-- NAV -->
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-50/80 backdrop-blur-sm">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 sm:h-18 flex items-center justify-between">
     <a href="https://www.better.website" class="flex items-center gap-2.5 group flex-shrink-0">
@@ -227,29 +112,22 @@ tailwind.config = {
       </div>
       <span class="text-sm font-semibold tracking-tight text-brand-950 hidden sm:inline">Better.Website</span>
     </a>
-    <!-- Desktop nav links -->
     <div class="hidden md:flex items-center gap-8">
       <a href="#work" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Work</a>
       <a href="#process" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">How It Works</a>
       <a href="#why-us" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Why Us</a>
       <a href="#pricing" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Pricing</a>
       <a href="#faq" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">FAQ</a>
-      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">
-        Get Your Mockup
-      </a>
+      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Mockup</a>
     </div>
-    <!-- Mobile menu button -->
     <div class="flex items-center gap-3 md:hidden">
-      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">
-        Get Your Mockup
-      </a>
+      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Mockup</a>
       <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-brand-100 transition-colors" aria-label="Toggle menu">
         <svg id="menuIconOpen" class="w-5 h-5 text-brand-950" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"/></svg>
         <svg id="menuIconClose" class="w-5 h-5 text-brand-950 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
   </div>
-  <!-- Mobile dropdown -->
   <div id="mobileMenu" class="hidden md:hidden border-t border-brand-200 bg-brand-50/95 backdrop-blur-lg">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex flex-col gap-1">
       <a href="#work" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100 transition-colors">Work</a>
@@ -261,11 +139,10 @@ tailwind.config = {
   </div>
 </nav>
 
-<!-- ========== HERO ========== -->
+<!-- HERO -->
 <section class="noise relative overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 bg-brand-50">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-      <!-- Left: Copy -->
       <div class="lg:w-1/2 flex-shrink-0">
         <div class="reveal">
           <span class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-brand-600 mb-6">Complimentary Mockup — 48 Hours</span>
@@ -284,17 +161,14 @@ tailwind.config = {
           <span class="text-sm text-brand-500">No payment info. No sales call. Just results.</span>
         </div>
       </div>
-      <!-- Right: Stacked browser mockups -->
       <div class="reveal reveal-delay-2 lg:w-1/2 relative">
         <div class="relative" style="animation: subtleFloat 6s ease-in-out infinite;">
-          <!-- Back card (before - peeking out) -->
           <div class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-[85%] rounded-xl overflow-hidden border border-brand-300 shadow-lg opacity-50 rotate-[-3deg] z-0">
             <div class="flex items-center gap-1.5 px-3 py-2 bg-brand-200 border-b border-brand-300">
               <div class="flex gap-1"><div class="w-2 h-2 rounded-full bg-brand-400"></div><div class="w-2 h-2 rounded-full bg-brand-400"></div><div class="w-2 h-2 rounded-full bg-brand-400"></div></div>
             </div>
             <img src="./before-fitclub.png" alt="Before redesign" class="w-full h-auto block">
           </div>
-          <!-- Front card (after) -->
           <div class="relative rounded-xl overflow-hidden border border-brand-200 shadow-2xl shadow-brand-950/10 z-10">
             <div class="flex items-center gap-2 px-3 py-2 bg-brand-100/80 border-b border-brand-200">
               <div class="flex gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div></div>
@@ -306,29 +180,23 @@ tailwind.config = {
       </div>
     </div>
   </div>
-  <!-- Decorative element -->
   <div class="absolute top-20 right-0 w-96 h-96 bg-gradient-to-bl from-brand-200/30 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 </section>
 
-<!-- ========== BEFORE / AFTER SHOWCASE ========== -->
+<!-- BEFORE / AFTER SHOWCASE -->
 <section id="work" class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-5xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-10">
       <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Real Results</span>
       <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Same business. New first impression.</h2>
     </div>
-
-    <!-- Project tabs -->
     <div class="reveal flex justify-center gap-2 mb-8">
-      <button onclick="switchProject(1)" class="project-tab active-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-950 text-brand-50" data-index="1">Fitness Club</button>
-      <button onclick="switchProject(0)" class="project-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-100 text-brand-600 hover:bg-brand-200" data-index="0">Photo Booth</button>
+      <button onclick="switchProject(0)" class="project-tab active-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-950 text-brand-50" data-index="0">Fitness Club</button>
+      <button onclick="switchProject(1)" class="project-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-100 text-brand-600 hover:bg-brand-200" data-index="1">Photo Booth</button>
       <button onclick="switchProject(2)" class="project-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-100 text-brand-600 hover:bg-brand-200" data-index="2">Fence Company</button>
     </div>
-
     <div class="reveal reveal-delay-1">
-      <!-- Browser chrome -->
       <div class="rounded-2xl overflow-hidden border border-brand-200 shadow-lg shadow-brand-950/5 bg-white">
-        <!-- Title bar -->
         <div class="flex items-center gap-2 px-4 py-3 bg-brand-100/80 border-b border-brand-200">
           <div class="flex gap-1.5">
             <div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div>
@@ -339,19 +207,15 @@ tailwind.config = {
             <div class="px-4 py-1 rounded-md bg-brand-50 text-xs text-brand-500 font-mono" id="browserUrl">360fitclub.com</div>
           </div>
         </div>
-        <!-- Comparison area -->
         <div class="comparison-container relative" id="comparisonSlider">
-          <!-- Before -->
           <div class="relative w-full">
             <img id="beforeImg" src="./before-fitclub.png" alt="Before: Original website" class="w-full h-auto block select-none" draggable="false">
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-brand-600 border border-brand-200 z-[5]">Before</div>
           </div>
-          <!-- After -->
-          <div class="comparison-after" id="afterPanel" >
+          <div class="comparison-after" id="afterPanel">
             <img id="afterImg" src="./after-fitclub.png" alt="After: Redesigned website" class="absolute inset-0 w-full h-full object-cover select-none" draggable="false">
             <div class="absolute top-4 right-4 bg-brand-950/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-brand-100 border border-brand-700 z-[5]">After</div>
           </div>
-          <!-- Handle -->
           <div class="comparison-handle" id="compHandle">
             <div class="comparison-handle-circle">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -360,7 +224,6 @@ tailwind.config = {
               </svg>
             </div>
           </div>
-          <!-- Drag hint -->
           <div class="drag-hint absolute bottom-4 left-1/2 -translate-x-1/2 bg-brand-950/80 backdrop-blur text-brand-100 px-4 py-2 rounded-full text-xs font-medium z-20 pointer-events-none flex items-center gap-2" id="dragHint">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L2 8L4 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6L14 8L12 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
             Drag to compare
@@ -371,7 +234,7 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ========== PROBLEM ========== -->
+<!-- PROBLEM -->
 <section class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
@@ -379,7 +242,6 @@ tailwind.config = {
       <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">The problems you shouldn't have to solve.</h2>
     </div>
     <div class="grid sm:grid-cols-2 gap-5">
-      <!-- Card 1 -->
       <div class="reveal card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
         <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -387,7 +249,6 @@ tailwind.config = {
         <h3 class="font-serif text-xl text-brand-950 mb-2">The DIY rabbit hole</h3>
         <p class="text-brand-600 leading-relaxed text-[15px]">You started building your site on a weekend. That was six months ago. You're three templates deep, nothing matches, and you still can't get the spacing right on mobile.</p>
       </div>
-      <!-- Card 2 -->
       <div class="reveal reveal-delay-1 card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
         <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -395,7 +256,6 @@ tailwind.config = {
         <h3 class="font-serif text-xl text-brand-950 mb-2">Invisible to the people who matter</h3>
         <p class="text-brand-600 leading-relaxed text-[15px]">Your ideal clients are searching right now. They're finding your competitors instead — not because they're better at what they do, but because they look like they are.</p>
       </div>
-      <!-- Card 3 -->
       <div class="reveal card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
         <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.556a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.34 8.342" transform="translate(1, 2) scale(0.9)"/></svg>
@@ -403,7 +263,6 @@ tailwind.config = {
         <h3 class="font-serif text-xl text-brand-950 mb-2">The cringe of sharing your link</h3>
         <p class="text-brand-600 leading-relaxed text-[15px]">You know the moment — someone asks for your website and you catch yourself adding disclaimers. "It's a work in progress." Your site should be something you hand out with confidence.</p>
       </div>
-      <!-- Card 4 -->
       <div class="reveal reveal-delay-1 card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
         <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5">
           <svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
@@ -415,7 +274,7 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ========== PROCESS ========== -->
+<!-- PROCESS -->
 <section id="process" class="py-16 sm:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
@@ -424,30 +283,22 @@ tailwind.config = {
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
       <div class="reveal text-center">
-        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5">
-          <span class="font-serif text-brand-50 text-xl">1</span>
-        </div>
+        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">1</span></div>
         <h3 class="font-semibold text-brand-950 mb-2">Mockup</h3>
         <p class="text-sm text-brand-600 leading-relaxed">Send us your site. We'll send back a redesigned homepage in 48 hours.</p>
       </div>
       <div class="reveal reveal-delay-1 text-center">
-        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5">
-          <span class="font-serif text-brand-50 text-xl">2</span>
-        </div>
+        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">2</span></div>
         <h3 class="font-semibold text-brand-950 mb-2">Design</h3>
         <p class="text-sm text-brand-600 leading-relaxed">Love it? We'll design every page — aligned to your brand and your goals.</p>
       </div>
       <div class="reveal reveal-delay-2 text-center">
-        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5">
-          <span class="font-serif text-brand-50 text-xl">3</span>
-        </div>
+        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">3</span></div>
         <h3 class="font-semibold text-brand-950 mb-2">Refine</h3>
         <p class="text-sm text-brand-600 leading-relaxed">Two rounds of revisions. We adjust until every detail is right.</p>
       </div>
       <div class="reveal reveal-delay-3 text-center">
-        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5">
-          <span class="font-serif text-brand-50 text-xl">4</span>
-        </div>
+        <div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">4</span></div>
         <h3 class="font-semibold text-brand-950 mb-2">Launch</h3>
         <p class="text-sm text-brand-600 leading-relaxed">Your site goes live — fast, responsive, and built to perform.</p>
       </div>
@@ -455,7 +306,7 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ========== SPEED & ADVANTAGE ========== -->
+<!-- WHY US -->
 <section id="why-us" class="py-16 sm:py-24 bg-brand-950 text-brand-100">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
@@ -487,7 +338,7 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ========== SOCIAL PROOF ========== -->
+<!-- SOCIAL PROOF -->
 <section class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
@@ -495,7 +346,6 @@ tailwind.config = {
       <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Trusted by people who do real work.</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-5">
-      <!-- Testimonial 1 -->
       <div class="reveal card-lift bg-white border border-brand-200 rounded-2xl p-7">
         <div class="flex gap-1 mb-4">
           <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -506,16 +356,10 @@ tailwind.config = {
         </div>
         <p class="text-brand-700 text-[15px] leading-relaxed mb-6">"I'd been putting off a redesign for two years. They sent the mockup and I immediately understood why my old site wasn't converting. The new site paid for itself within a month."</p>
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center">
-            <span class="text-sm font-semibold text-brand-700">SH</span>
-          </div>
-          <div>
-            <span class="text-sm font-semibold text-brand-950 block">Sarah H.</span>
-            <span class="text-xs text-brand-500">Licensed Therapist</span>
-          </div>
+          <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center"><span class="text-sm font-semibold text-brand-700">SH</span></div>
+          <div><span class="text-sm font-semibold text-brand-950 block">Sarah H.</span><span class="text-xs text-brand-500">Licensed Therapist</span></div>
         </div>
       </div>
-      <!-- Testimonial 2 -->
       <div class="reveal reveal-delay-1 card-lift bg-white border border-brand-200 rounded-2xl p-7">
         <div class="flex gap-1 mb-4">
           <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -526,16 +370,10 @@ tailwind.config = {
         </div>
         <p class="text-brand-700 text-[15px] leading-relaxed mb-6">"The mockup alone was better than what I paid a previous agency $8k for. The whole process was transparent — no surprises, no upsells. Exactly what they said it would be."</p>
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center">
-            <span class="text-sm font-semibold text-brand-700">MR</span>
-          </div>
-          <div>
-            <span class="text-sm font-semibold text-brand-950 block">Marcus R.</span>
-            <span class="text-xs text-brand-500">Business Consultant</span>
-          </div>
+          <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center"><span class="text-sm font-semibold text-brand-700">MR</span></div>
+          <div><span class="text-sm font-semibold text-brand-950 block">Marcus R.</span><span class="text-xs text-brand-500">Business Consultant</span></div>
         </div>
       </div>
-      <!-- Testimonial 3 -->
       <div class="reveal reveal-delay-2 card-lift bg-white border border-brand-200 rounded-2xl p-7">
         <div class="flex gap-1 mb-4">
           <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -546,13 +384,8 @@ tailwind.config = {
         </div>
         <p class="text-brand-700 text-[15px] leading-relaxed mb-6">"Our old site looked like it was from 2015 — because it was. Customers now tell us we look like a premium operation. We haven't changed a thing about our service, just how we present it."</p>
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center">
-            <span class="text-sm font-semibold text-brand-700">JT</span>
-          </div>
-          <div>
-            <span class="text-sm font-semibold text-brand-950 block">James T.</span>
-            <span class="text-xs text-brand-500">HVAC Company Owner</span>
-          </div>
+          <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center"><span class="text-sm font-semibold text-brand-700">JT</span></div>
+          <div><span class="text-sm font-semibold text-brand-950 block">James T.</span><span class="text-xs text-brand-500">HVAC Company Owner</span></div>
         </div>
       </div>
     </div>
@@ -578,147 +411,128 @@ tailwind.config = {
       <span id="saveBadge" class="text-xs font-semibold bg-green-100 text-green-700 px-2.5 py-1 rounded-full opacity-0 transition-opacity duration-300">Save up to 16%</span>
     </div>
 
+    <!-- Founder's Pricing Banner -->
+    <div class="reveal flex items-center justify-center mb-10">
+      <div class="inline-flex items-center gap-3 bg-green-50 border border-green-200 rounded-2xl px-6 py-4 max-w-lg w-full">
+        <div class="w-9 h-9 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-green-800">Founder's Pricing — First 100 Customers Only</p>
+          <p class="text-xs text-green-600 mt-0.5">Lock in your discounted rate for life. Once we hit 100 customers, prices return to standard.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+
       <!-- Starter -->
       <div class="reveal card-lift bg-brand-50 border border-brand-200 rounded-2xl p-7 sm:p-8 flex flex-col">
-        <div class="mb-6">
+        <div class="mb-5">
           <h3 class="font-semibold text-brand-950 text-lg mb-1">Starter</h3>
           <p class="text-sm text-brand-500">Perfect for getting online fast</p>
         </div>
-        <div class="mb-6">
-          <div class="price-display" data-monthly="299" data-annual="2,999">
-            <span class="font-serif text-4xl text-brand-950 price-amount">$299</span>
+        <div class="price-display mb-1" data-monthly-regular="199" data-monthly-founder="149" data-annual-regular="1,990" data-annual-founder="1,490">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-brand-400 line-through text-lg font-medium regular-price">$199</span>
+            <span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Pricing — 1st 100</span>
+          </div>
+          <div>
+            <span class="font-serif text-4xl text-brand-950 price-amount">$149</span>
             <span class="text-brand-500 text-sm price-period">/month</span>
           </div>
-          <div class="annual-note hidden mt-1.5">
-            <span class="text-xs text-green-600 font-medium">$250/mo equivalent — save $589/yr</span>
-          </div>
         </div>
-        <ul class="space-y-3 mb-8 flex-1">
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Custom-designed homepage
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Up to 3 pages
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Mobile responsive
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Hosting &amp; SSL included
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Monthly content update
-          </li>
-        </ul>
-        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">
-          Get Started
-        </a>
+        <div class="annual-note hidden mb-5">
+          <span class="text-xs text-green-600 font-medium">$1,490/yr — save $298 vs monthly</span>
+        </div>
+        <div class="mb-8 mt-4 flex-1">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Custom-designed homepage</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Up to 5 pages</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Mobile responsive</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Hosting &amp; SSL included</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basic SEO</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basic ecommerce integration</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>1 free landing page</li>
+          </ul>
+        </div>
+        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
       </div>
+
       <!-- Growth (Popular) -->
       <div class="reveal reveal-delay-1 card-lift pricing-popular bg-brand-50 border-2 border-brand-950 rounded-2xl p-7 sm:p-8 flex flex-col relative">
         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
           <span class="bg-brand-950 text-brand-50 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full">Most Popular</span>
         </div>
-        <div class="mb-6">
+        <div class="mb-5">
           <h3 class="font-semibold text-brand-950 text-lg mb-1">Growth</h3>
           <p class="text-sm text-brand-500">For businesses ready to scale</p>
         </div>
-        <div class="mb-6">
-          <div class="price-display" data-monthly="599" data-annual="5,999">
-            <span class="font-serif text-4xl text-brand-950 price-amount">$599</span>
+        <div class="price-display mb-1" data-monthly-regular="499" data-monthly-founder="349" data-annual-regular="4,990" data-annual-founder="3,490">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-brand-400 line-through text-lg font-medium regular-price">$499</span>
+            <span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Pricing — 1st 100</span>
+          </div>
+          <div>
+            <span class="font-serif text-4xl text-brand-950 price-amount">$349</span>
             <span class="text-brand-500 text-sm price-period">/month</span>
           </div>
-          <div class="annual-note hidden mt-1.5">
-            <span class="text-xs text-green-600 font-medium">$500/mo equivalent — save $1,189/yr</span>
-          </div>
         </div>
-        <ul class="space-y-3 mb-8 flex-1">
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Everything in Starter
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Up to 7 pages
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Contact form &amp; booking integration
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Basic SEO setup
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Bi-weekly content updates
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Priority support
-          </li>
-        </ul>
-        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">
-          Get Started
-        </a>
+        <div class="annual-note hidden mb-5">
+          <span class="text-xs text-green-600 font-medium">$3,490/yr — save $698 vs monthly</span>
+        </div>
+        <div class="mb-8 mt-4 flex-1">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Starter</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Up to 10 pages</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Advanced SEO</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Blog integration</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Advanced ecommerce integration</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>1 free landing page / quarter</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Priority support</li>
+          </ul>
+        </div>
+        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
       </div>
+
       <!-- Premium -->
       <div class="reveal reveal-delay-2 card-lift bg-brand-50 border border-brand-200 rounded-2xl p-7 sm:p-8 flex flex-col">
-        <div class="mb-6">
+        <div class="mb-5">
           <h3 class="font-semibold text-brand-950 text-lg mb-1">Premium</h3>
           <p class="text-sm text-brand-500">Full-service, white-glove treatment</p>
         </div>
-        <div class="mb-6">
-          <div class="price-display" data-monthly="1,299" data-annual="12,999">
-            <span class="font-serif text-4xl text-brand-950 price-amount">$1,299</span>
+        <div class="price-display mb-1" data-monthly-regular="999" data-monthly-founder="749" data-annual-regular="9,990" data-annual-founder="7,490">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-brand-400 line-through text-lg font-medium regular-price">$999</span>
+            <span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Pricing — 1st 100</span>
+          </div>
+          <div>
+            <span class="font-serif text-4xl text-brand-950 price-amount">$749</span>
             <span class="text-brand-500 text-sm price-period">/month</span>
           </div>
-          <div class="annual-note hidden mt-1.5">
-            <span class="text-xs text-green-600 font-medium">$1,083/mo equivalent — save $2,589/yr</span>
-          </div>
         </div>
-        <ul class="space-y-3 mb-8 flex-1">
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Everything in Growth
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Unlimited pages
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Advanced SEO &amp; analytics
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Blog or resource section
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Weekly content updates
-          </li>
-          <li class="flex items-start gap-3 text-[15px] text-brand-700">
-            <svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            Dedicated account manager
-          </li>
-        </ul>
-        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">
-          Get Started
-        </a>
+        <div class="annual-note hidden mb-5">
+          <span class="text-xs text-green-600 font-medium">$7,490/yr — save $1,498 vs monthly</span>
+        </div>
+        <div class="mb-8 mt-4 flex-1">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Growth</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Unlimited pages</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>CRM integration</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Machine Learning SEO</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Page redesigns included</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Monthly landing page creation</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dedicated account manager</li>
+          </ul>
+        </div>
+        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
       </div>
     </div>
     <p class="reveal text-center text-sm text-brand-500 mt-8">All plans include hosting, SSL, maintenance, and ongoing support. Cancel anytime.</p>
   </div>
 </section>
 
-<!-- ========== FAQ ========== -->
+<!-- FAQ -->
 <section id="faq" class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-2xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
@@ -731,59 +545,47 @@ tailwind.config = {
           <span>Is the mockup actually complimentary?</span>
           <span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span>
         </summary>
-        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">
-          Yes. No credit card, no obligation, no hidden catch. We'll redesign your homepage as a mockup so you can see exactly what's possible. If you want to move forward, great. If not, you still walk away with a professional design concept you can reference.
-        </div>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Yes. No credit card, no obligation, no hidden catch. We'll redesign your homepage as a mockup so you can see exactly what's possible. If you want to move forward, great. If not, you still walk away with a professional design concept you can reference.</div>
       </details>
       <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
         <summary class="flex items-center justify-between p-6 font-medium text-brand-950">
           <span>What if I don't like the design?</span>
           <span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span>
         </summary>
-        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">
-          The mockup is a starting point — not a final product. If you love the direction but want adjustments, that's exactly what the design phase is for. If it's not the right fit at all, there's no pressure. We'd rather you find the right partner than feel locked in.
-        </div>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">The mockup is a starting point — not a final product. If you love the direction but want adjustments, that's exactly what the design phase is for. If it's not the right fit at all, there's no pressure. We'd rather you find the right partner than feel locked in.</div>
       </details>
       <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
         <summary class="flex items-center justify-between p-6 font-medium text-brand-950">
           <span>How long does a full website build take?</span>
           <span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span>
         </summary>
-        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">
-          Most projects launch in 2 weeks from the start of the design phase. Timeline depends on the number of pages and the complexity of your needs, but we'll give you a clear schedule up front and stick to it.
-        </div>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Most projects launch in 2 weeks from the start of the design phase. Timeline depends on the number of pages and the complexity of your needs, but we'll give you a clear schedule up front and stick to it.</div>
       </details>
       <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
         <summary class="flex items-center justify-between p-6 font-medium text-brand-950">
           <span>Is this a template or fully custom?</span>
           <span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span>
         </summary>
-        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">
-          Fully custom. Every design is built from scratch based on your brand, your audience, and your goals. We don't reskin templates and call it strategy. Your site will look and feel like yours — because it is.
-        </div>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Fully custom. Every design is built from scratch based on your brand, your audience, and your goals. We don't reskin templates and call it strategy. Your site will look and feel like yours — because it is.</div>
       </details>
       <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
         <summary class="flex items-center justify-between p-6 font-medium text-brand-950">
           <span>Are there any upfront costs?</span>
           <span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span>
         </summary>
-        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">
-          None. Your subscription covers everything — design, development, hosting, SSL, maintenance, and ongoing updates. There are no setup fees, no deposits, and no surprise invoices. You can cancel anytime.
-        </div>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">None. Your subscription covers everything — design, development, hosting, SSL, maintenance, and ongoing updates. There are no setup fees, no deposits, and no surprise invoices. You can cancel anytime.</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ========== CTA / FORM ========== -->
+<!-- CTA / FORM -->
 <section id="mockup" class="noise relative py-20 sm:py-28 bg-brand-950 text-brand-100 overflow-hidden">
   <div class="max-w-2xl mx-auto px-5 sm:px-8 text-center">
     <div class="reveal">
       <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-brand-50 mb-4 leading-tight">See your site reimagined.<br>In 48 hours.</h2>
       <p class="text-brand-400 mb-10 text-lg">Drop your details and we'll send a complimentary homepage mockup. No strings, no call, no catch.</p>
     </div>
-
-    <!-- Form -->
     <div class="reveal reveal-delay-1" id="formWrapper">
       <div id="formContainer">
         <div class="space-y-4 max-w-md mx-auto text-left">
@@ -804,8 +606,6 @@ tailwind.config = {
           </button>
         </div>
       </div>
-
-      <!-- Success state (hidden) -->
       <div id="successState" class="hidden py-8">
         <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-5">
           <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -813,19 +613,16 @@ tailwind.config = {
         <h3 class="font-serif text-2xl text-brand-50 mb-2">You're in.</h3>
         <p class="text-brand-400">We'll have your homepage mockup ready within 48 hours. Keep an eye on your inbox.</p>
       </div>
-
-      <!-- Error state (hidden) -->
       <div id="errorState" class="hidden mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
         <p class="text-red-300 text-sm mb-2">Something went wrong. Please try again.</p>
         <button type="button" onclick="retryForm()" class="text-sm font-medium text-red-300 underline hover:text-red-200">Retry</button>
       </div>
     </div>
   </div>
-  <!-- Decorative -->
   <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-t from-brand-800/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer class="py-10 bg-brand-950 border-t border-brand-800">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
     <div class="flex items-center gap-3">
@@ -834,255 +631,159 @@ tailwind.config = {
       </div>
       <span class="text-sm text-brand-500">Quality, without the wait.</span>
     </div>
-    <span class="text-xs text-brand-600">&copy; 2026 Better.Website. All rights reserved.</span>
+    <div class="flex items-center gap-4 flex-wrap justify-center">
+      <a href="./privacy-policy.html" class="text-xs text-brand-500 hover:text-brand-300 transition-colors">Privacy Policy</a>
+      <span class="text-brand-700 text-xs">·</span>
+      <a href="./terms.html" class="text-xs text-brand-500 hover:text-brand-300 transition-colors">Terms of Use</a>
+      <span class="text-brand-700 text-xs">·</span>
+      <span class="text-xs text-brand-600">&copy; 2026 Better.Website. All rights reserved.</span>
+    </div>
   </div>
 </footer>
 
 <script>
-// ==========================================
-// NAV SCROLL SHADOW
-// ==========================================
+// NAV
 const nav = document.getElementById('nav');
-let lastScroll = 0;
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    nav.classList.add('nav-scrolled');
-  } else {
-    nav.classList.remove('nav-scrolled');
-  }
+  nav.classList.toggle('nav-scrolled', window.scrollY > 20);
 }, { passive: true });
 
-// ==========================================
-// SCROLL REVEAL (IntersectionObserver)
-// ==========================================
-const revealEls = document.querySelectorAll('.reveal');
+// SCROLL REVEAL
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ==========================================
-// BEFORE / AFTER COMPARISON SLIDER
-// ==========================================
+// COMPARISON SLIDER
 (function() {
   const container = document.getElementById('comparisonSlider');
   const afterPanel = document.getElementById('afterPanel');
   const handle = document.getElementById('compHandle');
   const hint = document.getElementById('dragHint');
-  let isDragging = false;
-  let hintDismissed = false;
-
-  function setPosition(x) {
-    const rect = container.getBoundingClientRect();
-    let pct = ((x - rect.left) / rect.width) * 100;
-    pct = Math.max(5, Math.min(95, pct));
-    afterPanel.style.clipPath = `inset(0 0 0 ${pct}%)`;
-    handle.style.left = pct + '%';
-    if (!hintDismissed) {
-      hint.style.opacity = '0';
-      hintDismissed = true;
-    }
+  let isDragging = false, hintDismissed = false;
+  function setPos(x) {
+    const r = container.getBoundingClientRect();
+    let p = Math.max(5, Math.min(95, ((x - r.left) / r.width) * 100));
+    afterPanel.style.clipPath = `inset(0 0 0 ${p}%)`;
+    handle.style.left = p + '%';
+    if (!hintDismissed) { hint.style.opacity = '0'; hintDismissed = true; }
   }
-
-  function onStart(x) {
-    isDragging = true;
-    setPosition(x);
-    document.body.style.cursor = 'ew-resize';
-  }
-  function onMove(x) {
-    if (!isDragging) return;
-    setPosition(x);
-  }
-  function onEnd() {
-    isDragging = false;
-    document.body.style.cursor = '';
-  }
-
-  // Mouse
-  container.addEventListener('mousedown', (e) => { e.preventDefault(); onStart(e.clientX); });
-  window.addEventListener('mousemove', (e) => onMove(e.clientX));
-  window.addEventListener('mouseup', onEnd);
-
-  // Touch
-  container.addEventListener('touchstart', (e) => { onStart(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchmove', (e) => { if (isDragging) onMove(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchend', onEnd);
+  container.addEventListener('mousedown', e => { e.preventDefault(); isDragging = true; setPos(e.clientX); document.body.style.cursor = 'ew-resize'; });
+  window.addEventListener('mousemove', e => { if (isDragging) setPos(e.clientX); });
+  window.addEventListener('mouseup', () => { isDragging = false; document.body.style.cursor = ''; });
+  container.addEventListener('touchstart', e => { isDragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchmove', e => { if (isDragging) setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchend', () => { isDragging = false; });
 })();
 
-// ==========================================
-// FORM SUBMISSION
-// ==========================================
+// FORM
 async function submitForm() {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const website = document.getElementById('website').value.trim();
   const btn = document.getElementById('submitBtn');
-  const errorState = document.getElementById('errorState');
-
-  // Basic validation
-  if (!name || !email || !website) {
-    return;
-  }
-
-  // Hide previous error
-  errorState.classList.add('hidden');
-
-  // Show spinner
+  const errEl = document.getElementById('errorState');
+  if (!name || !email || !website) return;
+  errEl.classList.add('hidden');
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div>';
-
   try {
     const res = await fetch('https://formspree.io/f/mjgeqddy', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ name, email, website })
     });
-
     if (res.ok) {
       document.getElementById('formContainer').classList.add('hidden');
       document.getElementById('successState').classList.remove('hidden');
-    } else {
-      throw new Error('Submission failed');
-    }
-  } catch (err) {
+    } else { throw new Error(); }
+  } catch {
     btn.disabled = false;
     btn.innerHTML = 'Send Me My Mockup';
-    errorState.classList.remove('hidden');
+    errEl.classList.remove('hidden');
   }
 }
+function retryForm() { document.getElementById('errorState').classList.add('hidden'); submitForm(); }
 
-function retryForm() {
-  document.getElementById('errorState').classList.add('hidden');
-  submitForm();
+// BILLING TOGGLE
+let isAnnual = false;
+function toggleBilling() {
+  isAnnual = !isAnnual;
+  const dot = document.getElementById('toggleDot');
+  const toggle = document.getElementById('billingToggle');
+  const lm = document.getElementById('labelMonthly');
+  const la = document.getElementById('labelAnnual');
+  const badge = document.getElementById('saveBadge');
+
+  if (isAnnual) {
+    dot.style.transform = 'translateX(24px)';
+    dot.classList.replace('bg-brand-950','bg-brand-50');
+    toggle.classList.replace('bg-brand-200','bg-brand-950');
+    lm.className = 'text-sm font-medium text-brand-500 transition-colors';
+    la.className = 'text-sm font-semibold text-brand-950 transition-colors';
+    badge.style.opacity = '1';
+  } else {
+    dot.style.transform = 'translateX(0)';
+    dot.classList.replace('bg-brand-50','bg-brand-950');
+    toggle.classList.replace('bg-brand-950','bg-brand-200');
+    lm.className = 'text-sm font-semibold text-brand-950 transition-colors';
+    la.className = 'text-sm font-medium text-brand-500 transition-colors';
+    badge.style.opacity = '0';
+  }
+
+  document.querySelectorAll('.price-display').forEach(el => {
+    const amt = el.querySelector('.price-amount');
+    const period = el.querySelector('.price-period');
+    const reg = el.querySelector('.regular-price');
+    if (isAnnual) {
+      amt.textContent = '$' + el.dataset.annualFounder;
+      period.textContent = '/year';
+      reg.textContent = '$' + el.dataset.annualRegular;
+    } else {
+      amt.textContent = '$' + el.dataset.monthlyFounder;
+      period.textContent = '/month';
+      reg.textContent = '$' + el.dataset.monthlyRegular;
+    }
+  });
+
+  document.querySelectorAll('.annual-note').forEach(el => el.classList.toggle('hidden', !isAnnual));
 }
 
-// ==========================================
-// BILLING TOGGLE (Monthly / Annual)
-// ==========================================
-let isAnnual = false;
-
-// ==========================================
-// PROJECT SHOWCASE SWITCHER
-// ==========================================
+// PROJECT SWITCHER
 const projects = [
   { before: './before-fitclub.png', after: './after-fitclub.png', url: '360fitclub.com' },
   { before: './before-3klicks.png', after: './after-3klicks.png', url: '3klicksphotobooth.com' },
   { before: './before-fence.png', after: './after-fence.png', url: 'fencingboulder.com' }
 ];
 let currentProject = 0;
-
-function switchProject(index) {
-  if (index === currentProject) return;
-  currentProject = index;
-
-  // Update tab styles
-  document.querySelectorAll('.project-tab').forEach((tab, i) => {
-    if (i === index) {
-      tab.classList.remove('bg-brand-100', 'text-brand-600', 'hover:bg-brand-200');
-      tab.classList.add('bg-brand-950', 'text-brand-50', 'active-tab');
-    } else {
-      tab.classList.remove('bg-brand-950', 'text-brand-50', 'active-tab');
-      tab.classList.add('bg-brand-100', 'text-brand-600', 'hover:bg-brand-200');
-    }
+function switchProject(idx) {
+  if (idx === currentProject) return;
+  currentProject = idx;
+  document.querySelectorAll('.project-tab').forEach((t, i) => {
+    if (i === idx) { t.className = 'project-tab active-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-950 text-brand-50'; }
+    else { t.className = 'project-tab px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-brand-100 text-brand-600 hover:bg-brand-200'; }
   });
-
-  // Update images and URL
-  const p = projects[index];
+  const p = projects[idx];
   document.getElementById('beforeImg').src = p.before;
   document.getElementById('afterImg').src = p.after;
   document.getElementById('browserUrl').textContent = p.url;
-
-  // Reset slider to 50%
-  const afterPanel = document.getElementById('afterPanel');
-  const handle = document.getElementById('compHandle');
-  afterPanel.style.clipPath = 'inset(0 0 0 50%)';
-  handle.style.left = '50%';
+  document.getElementById('afterPanel').style.clipPath = 'inset(0 0 0 50%)';
+  document.getElementById('compHandle').style.left = '50%';
 }
 
-// ==========================================
 // MOBILE MENU
-// ==========================================
 let mobileMenuOpen = false;
 function toggleMobileMenu() {
   mobileMenuOpen = !mobileMenuOpen;
-  const menu = document.getElementById('mobileMenu');
-  const iconOpen = document.getElementById('menuIconOpen');
-  const iconClose = document.getElementById('menuIconClose');
-  if (mobileMenuOpen) {
-    menu.classList.remove('hidden');
-    iconOpen.classList.add('hidden');
-    iconClose.classList.remove('hidden');
-  } else {
-    menu.classList.add('hidden');
-    iconOpen.classList.remove('hidden');
-    iconClose.classList.add('hidden');
-  }
+  document.getElementById('mobileMenu').classList.toggle('hidden', !mobileMenuOpen);
+  document.getElementById('menuIconOpen').classList.toggle('hidden', mobileMenuOpen);
+  document.getElementById('menuIconClose').classList.toggle('hidden', !mobileMenuOpen);
 }
 function closeMobileMenu() {
   mobileMenuOpen = false;
   document.getElementById('mobileMenu').classList.add('hidden');
   document.getElementById('menuIconOpen').classList.remove('hidden');
   document.getElementById('menuIconClose').classList.add('hidden');
-}
-
-function toggleBilling() {
-  isAnnual = !isAnnual;
-  const dot = document.getElementById('toggleDot');
-  const labelMonthly = document.getElementById('labelMonthly');
-  const labelAnnual = document.getElementById('labelAnnual');
-  const saveBadge = document.getElementById('saveBadge');
-  const toggle = document.getElementById('billingToggle');
-
-  if (isAnnual) {
-    dot.style.transform = 'translateX(24px)';
-    dot.classList.remove('bg-brand-950');
-    dot.classList.add('bg-brand-50');
-    toggle.classList.remove('bg-brand-200');
-    toggle.classList.add('bg-brand-950');
-    labelMonthly.classList.remove('font-semibold', 'text-brand-950');
-    labelMonthly.classList.add('font-medium', 'text-brand-500');
-    labelAnnual.classList.remove('font-medium', 'text-brand-500');
-    labelAnnual.classList.add('font-semibold', 'text-brand-950');
-    saveBadge.style.opacity = '1';
-  } else {
-    dot.style.transform = 'translateX(0)';
-    dot.classList.remove('bg-brand-50');
-    dot.classList.add('bg-brand-950');
-    toggle.classList.remove('bg-brand-950');
-    toggle.classList.add('bg-brand-200');
-    labelMonthly.classList.remove('font-medium', 'text-brand-500');
-    labelMonthly.classList.add('font-semibold', 'text-brand-950');
-    labelAnnual.classList.remove('font-semibold', 'text-brand-950');
-    labelAnnual.classList.add('font-medium', 'text-brand-500');
-    saveBadge.style.opacity = '0';
-  }
-
-  // Update prices
-  document.querySelectorAll('.price-display').forEach(el => {
-    const amount = el.querySelector('.price-amount');
-    const period = el.querySelector('.price-period');
-    if (isAnnual) {
-      amount.textContent = '$' + el.dataset.annual;
-      period.textContent = '/year';
-    } else {
-      amount.textContent = '$' + el.dataset.monthly;
-      period.textContent = '/month';
-    }
-  });
-
-  // Toggle annual savings notes
-  document.querySelectorAll('.annual-note').forEach(el => {
-    if (isAnnual) {
-      el.classList.remove('hidden');
-    } else {
-      el.classList.add('hidden');
-    }
-  });
 }
 </script>
 </body>
