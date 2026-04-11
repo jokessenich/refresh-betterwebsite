@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Better.Website — Quality Web Design, Without the Wait</title>
-<meta name="description" content="Get a complimentary homepage mockup in 48 hours. Better.Website builds focused, high-quality websites for service-based businesses.">
+<title>Better.Website — A Website That Just Keeps Getting Better</title>
+<meta name="description" content="We build websites for local service businesses — then make them better every single month using real visitor data. Start with a free homepage mockup in 48 hours.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1915'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='20' font-weight='bold' fill='%23faf9f7'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<!-- Facebook Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1440006527864453');fbq('track','PageView');
@@ -21,17 +22,32 @@ tailwind.config={theme:{extend:{fontFamily:{sans:['DM Sans','system-ui','sans-se
 <style>
 html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:'DM Sans',sans-serif;color:#1a1915;background:#faf9f7}
+
+/* Noise overlay */
 .noise::before{content:'';position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px;z-index:1}
 .noise>*{position:relative;z-index:2}
+
+/* Reveal animations */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* Buttons */
 .btn-glow{transition:transform .25s ease,box-shadow .25s ease}
 .btn-glow:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(26,25,21,.18)}
 .btn-glow:active{transform:translateY(0)}
+
+/* Nav */
 .nav-scrolled{box-shadow:0 1px 12px rgba(26,25,21,.08);background:rgba(250,249,247,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+
+/* Cards */
 .card-lift{transition:transform .3s ease,box-shadow .3s ease}
 .card-lift:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,25,21,.1)}
+
+/* FAQ */
 details summary{cursor:pointer;list-style:none}
 details summary::-webkit-details-marker{display:none}
 details summary::marker{display:none}
@@ -39,11 +55,7 @@ details summary .faq-icon{transition:transform .3s ease}
 details[open] summary .faq-icon{transform:rotate(45deg)}
 details .faq-body{animation:faqOpen .3s ease}
 @keyframes faqOpen{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes subtleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.pricing-popular{box-shadow:0 0 0 2px #1a1915,0 12px 40px rgba(26,25,21,.12)}
-.spinner{width:20px;height:20px;border:2px solid rgba(250,249,247,.3);border-top-color:#faf9f7;border-radius:50%;animation:spin .6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
+
 /* Before/After */
 .ba-frame{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(26,25,21,.1);border:1px solid #e8e4dd;aspect-ratio:16/9.5;background:#e8e4dd}
 .ba-frame img{width:100%;height:100%;object-fit:cover;object-position:top left;position:absolute;inset:0;transition:opacity .5s ease}
@@ -53,6 +65,7 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
 .ba-badge.after{background:#1a1915;box-shadow:0 2px 16px rgba(26,25,21,.3)}
 .ba-toggle{display:flex;align-items:center;gap:8px;padding:10px 22px;border-radius:100px;border:1px solid #e8e4dd;background:#fff;font-size:14px;font-weight:600;color:#5e5548;box-shadow:0 1px 4px rgba(26,25,21,.04);transition:all .25s;cursor:pointer}
 .ba-toggle.active{background:#1a1915;color:#faf9f7;border-color:transparent}
+
 /* iMessage bubbles */
 .bubble{margin-bottom:6px;display:flex}
 .bubble.me{justify-content:flex-end}
@@ -60,31 +73,136 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
 .bubble:not(.me) .bubble-inner{background:#e9e9eb;color:#000;border-radius:16px 16px 16px 4px}
 .bubble.me .bubble-inner{background:#34C759;color:#fff;border-radius:16px 16px 4px 16px}
 .bubble.emoji .bubble-inner{background:transparent;padding:4px 6px;font-size:26px;line-height:1.2}
+
+/* Pricing */
+.pricing-popular{box-shadow:0 0 0 2px #1a1915,0 12px 40px rgba(26,25,21,.12)}
+
+/* Form */
+.spinner{width:20px;height:20px;border:2px solid rgba(250,249,247,.3);border-top-color:#faf9f7;border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
+
 /* Sticky mobile CTA */
 .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:99;transform:translateY(100%);transition:transform .3s ease;background:rgba(250,249,247,.97);backdrop-filter:blur(12px);border-top:1px solid #e8e4dd;padding:12px 20px;display:none}
 .sticky-cta.show{transform:translateY(0)}
 @media(max-width:768px){.sticky-cta{display:block}}
+
+/* Living website score animation */
+@keyframes scoreUp{0%{width:38%}100%{width:var(--target-width)}}
+.score-fill{animation:scoreUp 2s cubic-bezier(.16,1,.3,1) forwards;animation-play-state:paused}
+.score-fill.animate{animation-play-state:running}
+
+/* Month timeline pulse */
+@keyframes monthPulse{0%,100%{opacity:.4;transform:scale(.95)}50%{opacity:1;transform:scale(1)}}
+
+/* Cycle ring */
+@keyframes cycleSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.cycle-ring{animation:cycleSpin 20s linear infinite}
+
+/* Audit input glow */
+.audit-input:focus{box-shadow:0 0 0 3px rgba(26,25,21,.15),0 4px 20px rgba(26,25,21,.08)}
+
+/* Step connector lines */
+.step-connector{position:relative}
+.step-connector::after{content:'';position:absolute;top:28px;left:calc(100% + 8px);width:calc(100% - 56px);height:2px;background:repeating-linear-gradient(90deg,#d5cfc4 0,#d5cfc4 6px,transparent 6px,transparent 12px)}
+@media(max-width:640px){.step-connector::after{display:none}}
+/* ── Page transformation: ugly → polished ── */
+
+/* Structural transitions */
+#nav{transition:background .5s ease,box-shadow .5s ease,backdrop-filter .5s ease}
+#heroCta{transition:background .4s ease,border-radius .4s ease,box-shadow .4s ease,padding .4s ease,font-size .3s ease,color .3s ease}
+#heroCtaSub{transition:opacity .3s ease}
+#heroCard{transition:opacity .6s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+
+/* ═══ EDIT STYLE: Strike + Retype (H1) ═══ */
+.edit-select{outline:2px dashed rgba(180,60,50,.5)!important;outline-offset:4px;border-radius:3px}
+.edit-strike{position:relative!important}
+.edit-strike::after{content:'';position:absolute;left:0;right:0;top:50%;height:2.5px;background:rgba(195,50,42,.7);border-radius:2px;transform-origin:left;animation:strikeAcross .25s cubic-bezier(.4,0,.2,1) forwards;z-index:5;pointer-events:none}
+@keyframes strikeAcross{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.edit-dimmed{color:rgba(26,25,21,.2)!important}
+.edit-cursor::after{content:'';display:inline-block;width:2.5px;height:.75em;background:#1a1915;border-radius:1px;margin-left:2px;vertical-align:baseline;position:relative;top:.1em;animation:cursorBlink .5s steps(1) infinite}
+@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+.edit-done{outline:2px solid rgba(34,160,75,.4)!important;outline-offset:4px;border-radius:3px}
+
+/* ═══ EDIT STYLE: Cut (Eyebrow) ═══ */
+.edit-cut{overflow:hidden!important;position:relative!important}
+.edit-cut-left,.edit-cut-right{display:inline-block;transition:transform .35s cubic-bezier(.55,.06,.68,.19),opacity .35s ease}
+.edit-cut-go .edit-cut-left{transform:translateY(30px) rotate(-8deg);opacity:0}
+.edit-cut-go .edit-cut-right{transform:translateY(40px) rotate(5deg);opacity:0}
+
+/* ═══ EDIT STYLE: Drag (Subheading) ═══ */
+.edit-drag-out{animation:dragOut .4s cubic-bezier(.55,.06,.68,.19) forwards!important}
+@keyframes dragOut{0%{transform:translateX(0);opacity:1}100%{transform:translateX(80px);opacity:0}}
+.edit-drag-in{animation:dragIn .4s cubic-bezier(.16,1,.3,1) forwards!important}
+@keyframes dragIn{0%{transform:translateX(-60px);opacity:0}100%{transform:translateX(0);opacity:1}}
+
+/* ═══ EDIT STYLE: Flip (CTA) ═══ */
+.edit-flip{animation:flipOut .35s cubic-bezier(.55,.06,.68,.19) forwards}
+@keyframes flipOut{0%{transform:perspective(600px) rotateX(0);opacity:1}100%{transform:perspective(600px) rotateX(90deg);opacity:0}}
+.edit-flip-in{animation:flipIn .35s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes flipIn{0%{transform:perspective(600px) rotateX(-90deg);opacity:0}100%{transform:perspective(600px) rotateX(0);opacity:1}}
+
+/* ═══ H1 word cycler ═══ */
+#heroWord{display:inline-block;min-width:0}
+#heroWord.cycle-out{animation:wordOut .3s cubic-bezier(.55,.06,.68,.19) forwards}
+#heroWord.cycle-in{animation:wordIn .3s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes wordOut{0%{transform:perspective(500px) rotateX(0) translateY(0);opacity:1}100%{transform:perspective(500px) rotateX(70deg) translateY(-8px);opacity:0}}
+@keyframes wordIn{0%{transform:perspective(500px) rotateX(-70deg) translateY(8px);opacity:0}100%{transform:perspective(500px) rotateX(0) translateY(0);opacity:1}}
+
+/* NAV — ugly */
+body.ugly-nav #nav{background:linear-gradient(135deg,#1a3a8f 0%,#6b21a8 100%)!important;box-shadow:0 3px 0 #ffd700!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body.ugly-nav .nav-link{color:#fff!important;text-decoration:underline!important;font-family:'Times New Roman',serif!important;font-size:13px!important}
+body.ugly-nav .nav-logo-text{font-family:'Times New Roman',serif!important;color:#ffd700!important;font-weight:400!important;font-size:17px!important;letter-spacing:0!important}
+body.ugly-nav .nav-logo-icon{background:#ffd700!important;border-radius:0!important}
+body.ugly-nav .nav-logo-icon span{color:#1a3a8f!important;font-family:'Times New Roman',serif!important}
+body.ugly-nav .nav-cta{background:#ffd700!important;color:#000!important;border-radius:2px!important;font-family:'Times New Roman',serif!important;text-decoration:none!important;font-weight:700!important}
+body.ugly-nav .nav-cta-mobile{background:#ffd700!important;color:#000!important;border-radius:2px!important;font-family:'Times New Roman',serif!important;text-decoration:none!important}
+
+/* HERO BG — ugly */
+body.ugly-bg .hero-section{background:#ffffff!important}
+
+/* EYEBROW — ugly */
+body.ugly-eyebrow #heroEyebrow{font-family:'Comic Sans MS','Chalkboard SE',cursive!important;color:#ff0000!important;letter-spacing:.02em!important;text-transform:none!important;font-size:15px!important;font-weight:400!important}
+
+/* H1 — ugly */
+body.ugly-h1 #heroH1{font-family:'Comic Sans MS','Chalkboard SE',cursive!important;color:#cc0000!important;font-size:2rem!important;line-height:1.3!important;letter-spacing:0!important}
+@media(min-width:640px){body.ugly-h1 #heroH1{font-size:2.4rem!important}}
+
+/* SUB — ugly */
+body.ugly-sub #heroSub{font-family:'Comic Sans MS','Chalkboard SE',cursive!important;color:#333!important;font-size:13px!important;line-height:1.5!important;max-width:100%!important}
+
+/* CTA — ugly */
+body.ugly-cta #heroCta{background:linear-gradient(180deg,#33ff33,#00cc00)!important;color:#000!important;font-family:'Comic Sans MS','Chalkboard SE',cursive!important;border-radius:3px!important;box-shadow:3px 3px 0 #006600!important;font-size:18px!important;text-transform:uppercase!important;letter-spacing:.05em!important;padding:14px 24px!important}
+body.ugly-cta #heroCta svg{display:none}
+body.ugly-cta #heroCtaSub{opacity:0}
+
+/* CARD — hidden in ugly state, fades in as the grand finale */
+body.ugly-card #heroCard{opacity:0;transform:translateY(20px)}
+
+/* Completion pulse */
+@keyframes completionPulse{0%{box-shadow:inset 0 0 0 0 rgba(213,207,196,0)}30%{box-shadow:inset 0 0 80px 0 rgba(213,207,196,.15)}100%{box-shadow:inset 0 0 0 0 rgba(213,207,196,0)}}
+.hero-section.complete{animation:completionPulse 1.2s ease}
 </style>
 </head>
-<body class="antialiased">
+<body class="antialiased ugly-nav ugly-bg ugly-eyebrow ugly-h1 ugly-sub ugly-cta ugly-card">
 
-<!-- NAV -->
+<!-- ==================== NAV ==================== -->
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-50/80 backdrop-blur-sm">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 sm:h-18 flex items-center justify-between">
     <a href="https://www.better.website" class="flex items-center gap-2.5 group flex-shrink-0">
-      <div class="w-8 h-8 rounded-lg bg-brand-950 flex items-center justify-center"><span class="text-brand-50 font-serif text-base leading-none mt-px">B</span></div>
-      <span class="text-sm font-semibold tracking-tight text-brand-950 hidden sm:inline">Better.Website</span>
+      <div class="nav-logo-icon w-8 h-8 rounded-lg bg-brand-950 flex items-center justify-center" style="transition:all .5s ease"><span class="text-brand-50 font-serif text-base leading-none mt-px">B</span></div>
+      <span class="nav-logo-text text-sm font-semibold tracking-tight text-brand-950 hidden sm:inline" style="transition:all .5s ease">Better.Website</span>
     </a>
     <div class="hidden md:flex items-center gap-8">
-      <a href="#work" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Work</a>
-      <a href="#process" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">How It Works</a>
-      <a href="#why-us" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Why Us</a>
-      <a href="#pricing" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">Pricing</a>
-      <a href="#faq" class="text-sm text-brand-600 hover:text-brand-950 transition-colors">FAQ</a>
-      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Mockup</a>
+      <a href="#work" class="nav-link text-sm text-brand-600 hover:text-brand-950 transition-colors">Work</a>
+      <a href="#how-it-works" class="nav-link text-sm text-brand-600 hover:text-brand-950 transition-colors">How It Works</a>
+      <a href="#why-us" class="nav-link text-sm text-brand-600 hover:text-brand-950 transition-colors">Why Us</a>
+      <a href="#pricing" class="nav-link text-sm text-brand-600 hover:text-brand-950 transition-colors">Pricing</a>
+      <a href="#faq" class="nav-link text-sm text-brand-600 hover:text-brand-950 transition-colors">FAQ</a>
+      <a href="#mockup" class="nav-cta btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Mockup</a>
     </div>
     <div class="flex items-center gap-3 md:hidden">
-      <a href="#mockup" class="btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Mockup</a>
+      <a href="#mockup" class="nav-cta-mobile btn-glow inline-flex items-center px-5 py-2.5 bg-brand-950 text-brand-50 text-sm font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Mockup</a>
       <button onclick="toggleMobileMenu()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-brand-100 transition-colors" aria-label="Toggle menu">
         <svg id="menuIconOpen" class="w-5 h-5 text-brand-950" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"/></svg>
         <svg id="menuIconClose" class="w-5 h-5 text-brand-950 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -94,7 +212,7 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
   <div id="mobileMenu" class="hidden md:hidden border-t border-brand-200 bg-brand-50/95 backdrop-blur-lg">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex flex-col gap-1">
       <a href="#work" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100">Work</a>
-      <a href="#process" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100">How It Works</a>
+      <a href="#how-it-works" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100">How It Works</a>
       <a href="#why-us" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100">Why Us</a>
       <a href="#pricing" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100">Pricing</a>
       <a href="#faq" onclick="closeMobileMenu()" class="px-4 py-3 rounded-xl text-sm font-medium text-brand-700 hover:bg-brand-100">FAQ</a>
@@ -102,31 +220,68 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="noise relative overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 bg-brand-50">
+<!-- ==================== HERO ==================== -->
+<section class="hero-section noise relative overflow-hidden pt-32 sm:pt-40 pb-20 sm:pb-28 bg-brand-50">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-      <div class="lg:w-1/2 flex-shrink-0">
-        <div class="reveal"><span class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-brand-600 mb-6">Complimentary Mockup — 48 Hours</span></div>
-        <h1 class="reveal reveal-delay-1 font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-6xl text-brand-950 leading-[1.08] mb-6">Your website should work as hard as you do.</h1>
-        <p class="reveal reveal-delay-2 text-lg sm:text-xl text-brand-600 leading-relaxed mb-10 max-w-xl">We'll redesign your homepage in 48 hours — at no cost and with no commitment. See what's possible when your site finally matches the quality of your work.</p>
-        <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-          <a href="#mockup" class="btn-glow inline-flex items-center px-8 py-3.5 bg-brand-950 text-brand-50 text-base font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Free Mockup <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-          <span class="text-sm text-brand-500">No payment info. No sales call. Just results.</span>
+      <div class="lg:w-[55%] flex-shrink-0">
+        <div><span id="heroEyebrow" class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-brand-600 mb-6">★★★ #1 TOP RATED WEB COMPANY ★★★</span></div>
+        <h1 id="heroH1" class="font-serif text-4xl sm:text-5xl md:text-[3.4rem] lg:text-[3.6rem] text-brand-950 leading-[1.08] mb-6">WELCOME TO Our Website!!! Click Here 4 Info</h1>
+        <p id="heroSub" class="text-lg sm:text-xl text-brand-600 leading-relaxed mb-10 max-w-xl">We Are The BEST Company For ALL Your Needs! Exposed To Over 10,000 Eyeballs Monthly! Call Now For A FREE Quote! 100% Satisfaction GUARANTEED!!!</p>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          <a href="#mockup" id="heroCta" class="btn-glow inline-flex items-center px-8 py-3.5 bg-brand-950 text-brand-50 text-base font-medium rounded-full hover:bg-brand-900 transition-colors">>>> CLICK HERE NOW!!! <<< <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+          <span id="heroCtaSub" class="text-sm text-brand-500">No payment info. No sales call.</span>
         </div>
       </div>
-      <div class="reveal reveal-delay-2 lg:w-1/2 relative">
-        <div class="relative" style="animation:subtleFloat 6s ease-in-out infinite">
-          <div class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-[85%] rounded-xl overflow-hidden border border-brand-300 shadow-lg opacity-50 rotate-[-3deg] z-0">
-            <div class="flex items-center gap-1.5 px-3 py-2 bg-brand-200 border-b border-brand-300"><div class="flex gap-1"><div class="w-2 h-2 rounded-full bg-brand-400"></div><div class="w-2 h-2 rounded-full bg-brand-400"></div><div class="w-2 h-2 rounded-full bg-brand-400"></div></div></div>
-            <img src="./before-fitclub.png" alt="Before redesign" class="w-full h-auto block">
-          </div>
-          <div class="relative rounded-xl overflow-hidden border border-brand-200 shadow-2xl shadow-brand-950/10 z-10">
-            <div class="flex items-center gap-2 px-3 py-2 bg-brand-100/80 border-b border-brand-200">
-              <div class="flex gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div><div class="w-2.5 h-2.5 rounded-full bg-brand-300"></div></div>
-              <div class="flex-1 flex justify-center"><div class="px-3 py-0.5 rounded-md bg-brand-50 text-[10px] text-brand-500 font-mono">360fitclub.com</div></div>
+      <!-- Hero visual: monthly improvement concept -->
+      <div id="heroCard" class="lg:w-[45%]">
+        <div class="bg-white rounded-2xl border border-brand-200 shadow-xl shadow-brand-950/[.06] overflow-hidden">
+          <!-- Fake notification bar -->
+          <div class="px-5 py-3.5 bg-brand-100/60 border-b border-brand-200 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-brand-950 flex items-center justify-center flex-shrink-0"><span class="text-brand-50 font-serif text-xs leading-none mt-px">B</span></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[13px] font-semibold text-brand-950 truncate">Hey Mike — we made something for you</p>
+              <p class="text-[11px] text-brand-500">better.website · April update</p>
             </div>
-            <img src="./after-fitclub.png" alt="After redesign by Better.Website" class="w-full h-auto block">
+            <span class="text-[11px] text-brand-400 flex-shrink-0">Just now</span>
+          </div>
+          <!-- Monthly update card -->
+          <div class="p-5">
+            <p class="text-[13px] text-brand-600 mb-4 leading-relaxed">We moved your call-to-action above the fold and rewrote the headline using terms your visitors actually search for.</p>
+            <!-- Score bar -->
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[12px] font-semibold text-brand-700 tracking-wide uppercase">Site Score</span>
+                <span class="text-[12px] font-bold text-brand-950" id="heroScoreNum">38 → 72</span>
+              </div>
+              <div class="h-2.5 bg-brand-100 rounded-full overflow-hidden">
+                <div class="h-full rounded-full bg-brand-950 score-fill" style="--target-width:72%" id="heroScoreBar"></div>
+              </div>
+            </div>
+            <!-- Mini stats -->
+            <div class="grid grid-cols-3 gap-3 mb-4">
+              <div class="bg-brand-50 rounded-xl p-3 text-center">
+                <p class="text-[18px] font-serif text-brand-950 leading-none mb-0.5">+72%</p>
+                <p class="text-[10px] text-brand-500 uppercase tracking-wide font-medium">Conversions</p>
+              </div>
+              <div class="bg-brand-50 rounded-xl p-3 text-center">
+                <p class="text-[18px] font-serif text-brand-950 leading-none mb-0.5">−34%</p>
+                <p class="text-[10px] text-brand-500 uppercase tracking-wide font-medium">Bounce Rate</p>
+              </div>
+              <div class="bg-brand-50 rounded-xl p-3 text-center">
+                <p class="text-[18px] font-serif text-brand-950 leading-none mb-0.5">+2.4s</p>
+                <p class="text-[10px] text-brand-500 uppercase tracking-wide font-medium">Avg. Session</p>
+              </div>
+            </div>
+            <!-- CTA button in the "email" -->
+            <div class="flex items-center gap-3">
+              <div class="flex-1 h-11 rounded-xl bg-brand-950 flex items-center justify-center">
+                <span class="text-brand-50 text-[13px] font-semibold">Make It Live</span>
+              </div>
+              <div class="h-11 rounded-xl border border-brand-200 flex items-center justify-center px-4">
+                <span class="text-brand-600 text-[13px] font-medium">See Details</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -135,7 +290,18 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
   <div class="absolute top-20 right-0 w-96 h-96 bg-gradient-to-bl from-brand-200/30 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 </section>
 
-<!-- BEFORE / AFTER — FULL WIDTH SHOWCASES -->
+<!-- ==================== SOCIAL PROOF STRIP ==================== -->
+<section class="py-5 border-y border-brand-200 bg-white">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+    <p class="text-sm text-brand-500">Trusted by service businesses in <strong class="text-brand-700">12 states</strong></p>
+    <span class="hidden sm:inline text-brand-300">·</span>
+    <p class="text-sm text-brand-500">Fence companies, HVAC, salons, contractors, fitness studios</p>
+    <span class="hidden sm:inline text-brand-300">·</span>
+    <p class="text-sm text-brand-500">48-hour mockups delivered <strong class="text-brand-700">every week</strong></p>
+  </div>
+</section>
+
+<!-- ==================== BEFORE / AFTER SHOWCASES ==================== -->
 <section id="work" class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-5xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-12">
@@ -169,15 +335,100 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
         <div class="ba-frame"><img src="./before-fitclub.png" alt="360 FitClub before" class="hidden" data-role="before"><img src="./after-fitclub.png" alt="360 FitClub after" data-role="after"><div class="ba-badge after" id="fitclub-badge">✦ AFTER</div></div>
       </div>
     </div>
-    <!-- CTA right after proof -->
     <div class="reveal text-center mt-12">
       <a href="#mockup" class="btn-glow inline-flex items-center px-8 py-3.5 bg-brand-950 text-brand-50 text-base font-medium rounded-full hover:bg-brand-900 transition-colors">Get Your Free Mockup <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- REAL TESTIMONIALS -->
-<section class="py-16 sm:py-24 bg-white">
+<!-- ==================== THE LIVING WEBSITE (NEW) ==================== -->
+<section id="living" class="py-16 sm:py-24 bg-white overflow-hidden">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="reveal text-center mb-14">
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">The Difference</span>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-[2.75rem] text-brand-950 leading-tight">Most agencies build your site and walk away.<br class="hidden sm:inline"> We build it and make it better every month.</h2>
+      <p class="text-brand-600 mt-4 text-[15px] max-w-2xl mx-auto leading-relaxed">Every month, real data drives real improvements. Your site doesn't just sit there — it learns what's working, fixes what isn't, and compounds in quality over time.</p>
+    </div>
+
+    <div class="reveal max-w-4xl mx-auto">
+      <!-- Monthly cycle visualization -->
+      <div class="bg-brand-50 rounded-2xl border border-brand-200 p-6 sm:p-10">
+        <!-- The cycle steps -->
+        <div class="grid sm:grid-cols-4 gap-6 sm:gap-4 mb-10">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full bg-brand-950 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-5 h-5 text-brand-50" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+            </div>
+            <p class="text-[13px] font-semibold text-brand-950 mb-1">We collect data</p>
+            <p class="text-[12px] text-brand-500 leading-snug">Visitor behavior, bounce rates, conversions, keyword rankings</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full bg-brand-950 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-5 h-5 text-brand-50" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
+            </div>
+            <p class="text-[13px] font-semibold text-brand-950 mb-1">AI identifies the fix</p>
+            <p class="text-[12px] text-brand-500 leading-snug">Finds the single highest-impact improvement to make this month</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full bg-brand-950 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-5 h-5 text-brand-50" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.03-5.03m0 0L11.42 5.1m-5.03 5.04h12.14"/></svg>
+            </div>
+            <p class="text-[13px] font-semibold text-brand-950 mb-1">We build it</p>
+            <p class="text-[12px] text-brand-500 leading-snug">The improvement is designed, coded, and staged for your review</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full bg-brand-950 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-5 h-5 text-brand-50" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <p class="text-[13px] font-semibold text-brand-950 mb-1">You tap "Make It Live"</p>
+            <p class="text-[12px] text-brand-500 leading-snug">Approve from your phone. Done. The cycle repeats next month.</p>
+          </div>
+        </div>
+
+        <!-- Score progression -->
+        <div class="border-t border-brand-200 pt-8">
+          <p class="text-[12px] font-semibold text-brand-500 tracking-[0.15em] uppercase mb-5 text-center">What compounding improvement looks like</p>
+          <div class="flex items-end justify-between gap-2 sm:gap-3 max-w-lg mx-auto h-32" id="scoreChart">
+            <div class="flex-1 flex flex-col items-center gap-1.5">
+              <span class="text-[11px] font-bold text-brand-950">38</span>
+              <div class="w-full rounded-t-md bg-brand-300 transition-all duration-700" style="height:30%"></div>
+              <span class="text-[10px] text-brand-500">Launch</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5">
+              <span class="text-[11px] font-bold text-brand-950">47</span>
+              <div class="w-full rounded-t-md bg-brand-400 transition-all duration-700" style="height:38%"></div>
+              <span class="text-[10px] text-brand-500">Month 1</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5">
+              <span class="text-[11px] font-bold text-brand-950">55</span>
+              <div class="w-full rounded-t-md bg-brand-500 transition-all duration-700" style="height:45%"></div>
+              <span class="text-[10px] text-brand-500">Month 2</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5">
+              <span class="text-[11px] font-bold text-brand-950">61</span>
+              <div class="w-full rounded-t-md bg-brand-600 transition-all duration-700" style="height:52%"></div>
+              <span class="text-[10px] text-brand-500">Month 3</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5">
+              <span class="text-[11px] font-bold text-brand-950">66</span>
+              <div class="w-full rounded-t-md bg-brand-700 transition-all duration-700" style="height:58%"></div>
+              <span class="text-[10px] text-brand-500">Month 4</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5">
+              <span class="text-[11px] font-bold text-brand-950">72</span>
+              <div class="w-full rounded-t-md bg-brand-950 transition-all duration-700" style="height:65%"></div>
+              <span class="text-[10px] text-brand-500">Month 5</span>
+            </div>
+          </div>
+          <p class="text-center text-[13px] text-brand-600 mt-5 leading-relaxed">Most sites launch and decay. Yours launches and <em class="font-serif text-brand-950">improves.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REAL REACTIONS ==================== -->
+<section class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-5xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-12">
       <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Real Reactions</span>
@@ -186,7 +437,7 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
     </div>
     <div class="grid md:grid-cols-3 gap-5">
       <!-- iMessage -->
-      <div class="reveal card-lift bg-brand-50 border border-brand-200 rounded-2xl overflow-hidden">
+      <div class="reveal card-lift bg-white border border-brand-200 rounded-2xl overflow-hidden">
         <div class="px-4 py-2.5 border-b border-brand-200 flex items-center gap-2">
           <svg class="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
           <span class="text-xs font-semibold text-brand-500">iMessage</span>
@@ -200,7 +451,7 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
         </div>
       </div>
       <!-- Text message -->
-      <div class="reveal reveal-delay-1 card-lift bg-brand-50 border border-brand-200 rounded-2xl overflow-hidden">
+      <div class="reveal reveal-delay-1 card-lift bg-white border border-brand-200 rounded-2xl overflow-hidden">
         <div class="px-4 py-2.5 border-b border-brand-200 flex items-center gap-2">
           <svg class="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
           <span class="text-xs font-semibold text-brand-500">Text Message</span>
@@ -216,7 +467,7 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
       </div>
       <!-- Email + Promise -->
       <div class="reveal reveal-delay-2 flex flex-col gap-5">
-        <div class="card-lift bg-brand-50 border border-brand-200 rounded-2xl p-5">
+        <div class="card-lift bg-white border border-brand-200 rounded-2xl p-5">
           <div class="flex items-center gap-3 mb-3">
             <div class="w-9 h-9 rounded-full bg-brand-200 flex items-center justify-center"><svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
             <div><p class="text-sm font-semibold text-brand-950">Jonathan Bridges</p><p class="text-[11px] text-brand-500">via Email</p></div>
@@ -224,7 +475,7 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
           <p class="text-brand-700 text-[14px] leading-relaxed italic">"Hoping to see the mockup first, and then that you would work with me to get the domain right. From what I initially saw, I was unexpectedly impressed &amp; this is why I'm contacting u again!"</p>
         </div>
         <div class="bg-brand-100 border border-brand-200 rounded-2xl p-6 text-center flex-1 flex flex-col items-center justify-center">
-          <p class="font-serif text-lg text-brand-950 italic leading-relaxed">"This is what happens when your website finally matches the quality of your work."</p>
+          <p class="font-serif text-lg text-brand-950 italic leading-relaxed">"A website that just keeps getting better."</p>
           <div class="w-10 h-[3px] bg-brand-950 rounded-full mt-4 mb-3"></div>
           <p class="text-xs font-semibold text-brand-600 tracking-[0.15em] uppercase">The Better.Website Promise</p>
         </div>
@@ -233,138 +484,298 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section class="py-16 sm:py-24 bg-brand-50">
+<!-- ==================== HOW IT WORKS ==================== -->
+<section id="how-it-works" class="py-16 sm:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
     <div class="reveal text-center mb-14">
-      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Sound Familiar?</span>
-      <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">The problems you shouldn't have to solve.</h2>
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">How It Works</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Three steps. The third one changes everything.</h2>
     </div>
-    <div class="grid sm:grid-cols-2 gap-5">
+    <div class="grid sm:grid-cols-3 gap-10 sm:gap-6 max-w-4xl mx-auto">
+      <!-- Step 1 -->
+      <div class="reveal text-center">
+        <div class="w-16 h-16 rounded-2xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-2xl">1</span></div>
+        <h3 class="font-semibold text-brand-950 text-lg mb-2">Free Mockup</h3>
+        <p class="text-sm text-brand-600 leading-relaxed">Send us your current site. We'll redesign your homepage in 48 hours — no cost, no commitment, no catch.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="reveal reveal-delay-1 text-center">
+        <div class="w-16 h-16 rounded-2xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-2xl">2</span></div>
+        <h3 class="font-semibold text-brand-950 text-lg mb-2">We Build It</h3>
+        <p class="text-sm text-brand-600 leading-relaxed">Love the direction? We design and build your full site — aligned to your brand, optimized for conversions, live in weeks.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="reveal reveal-delay-2 text-center">
+        <div class="w-16 h-16 rounded-2xl bg-brand-950 flex items-center justify-center mx-auto mb-5 relative">
+          <span class="font-serif text-brand-50 text-2xl">3</span>
+          <div class="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          </div>
+        </div>
+        <h3 class="font-semibold text-brand-950 text-lg mb-2">It Keeps Getting Better</h3>
+        <p class="text-sm text-brand-600 leading-relaxed">Every month: we pull your analytics, identify the highest-impact improvement, build it, and you approve it from your phone. Your site compounds in quality — automatically.</p>
+      </div>
+    </div>
+    <!-- Expanded Step 3 detail -->
+    <div class="reveal max-w-3xl mx-auto mt-14 bg-brand-50 border border-brand-200 rounded-2xl p-6 sm:p-8">
+      <p class="text-[12px] font-semibold text-brand-500 tracking-[0.15em] uppercase mb-4 text-center">What "Keeps Getting Better" actually means</p>
+      <div class="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg bg-brand-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-3.5 h-3.5 text-brand-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75z"/></svg>
+          </div>
+          <div>
+            <p class="text-[14px] font-semibold text-brand-950">Real analytics, not guesswork</p>
+            <p class="text-[13px] text-brand-600 leading-relaxed">We track visitor behavior, bounce rates, heatmaps, and conversion paths.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg bg-brand-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-3.5 h-3.5 text-brand-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          </div>
+          <div>
+            <p class="text-[14px] font-semibold text-brand-950">SEO that doesn't stagnate</p>
+            <p class="text-[13px] text-brand-600 leading-relaxed">Keyword rankings, organic traffic, and backlink profiles — reviewed monthly.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg bg-brand-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-3.5 h-3.5 text-brand-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <div>
+            <p class="text-[14px] font-semibold text-brand-950">AI-powered analysis</p>
+            <p class="text-[13px] text-brand-600 leading-relaxed">We identify the single change that'll have the biggest impact this month.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg bg-brand-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-3.5 h-3.5 text-brand-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+          </div>
+          <div>
+            <p class="text-[14px] font-semibold text-brand-950">One-tap approval</p>
+            <p class="text-[13px] text-brand-600 leading-relaxed">You get an email. You tap "Make It Live." That's your entire job.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FREE AUDIT CTA ==================== -->
+<section class="noise relative py-14 sm:py-20 bg-brand-950 text-brand-100 overflow-hidden">
+  <div class="max-w-2xl mx-auto px-5 sm:px-8 text-center">
+    <div class="reveal">
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Free Site Audit</span>
+      <h2 class="font-serif text-2xl sm:text-3xl text-brand-50 mb-3">Curious how your current site scores?</h2>
+      <p class="text-brand-400 mb-8 text-[15px] leading-relaxed max-w-lg mx-auto">We grade websites on a 100-point rubric — broken elements, mobile UX, load speed, CTA clarity, design quality, and more. Get your score in seconds.</p>
+    </div>
+    <div class="reveal reveal-delay-1 flex flex-col sm:flex-row items-stretch gap-3 max-w-md mx-auto">
+      <input type="text" id="auditUrl" inputmode="url" placeholder="yoursite.com" class="audit-input flex-1 px-5 py-3.5 rounded-xl bg-brand-900 border border-brand-700 text-brand-50 placeholder-brand-600 text-[15px] transition-all focus:border-brand-500">
+      <a id="auditBtn" onclick="launchAudit()" class="btn-glow cursor-pointer inline-flex items-center justify-center px-6 py-3.5 bg-brand-50 text-brand-950 text-[15px] font-semibold rounded-xl hover:bg-white transition-colors whitespace-nowrap">Score My Site</a>
+    </div>
+    <p class="reveal reveal-delay-2 text-[12px] text-brand-600 mt-4">Free. No signup required. Results in under 30 seconds.</p>
+  </div>
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-gradient-to-t from-brand-800/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+</section>
+
+<!-- ==================== WHY US ==================== -->
+<section id="why-us" class="py-16 sm:py-24 bg-brand-50">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="reveal text-center mb-14">
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Why Us</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Your site never goes stale.</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
       <div class="reveal card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
-        <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5"><svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-        <h3 class="font-serif text-xl text-brand-950 mb-2">The DIY rabbit hole</h3>
-        <p class="text-brand-600 leading-relaxed text-[15px]">You started building your site on a weekend. That was six months ago. You're three templates deep, nothing matches, and you still can't get the spacing right on mobile.</p>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0"><span class="font-serif text-lg text-brand-700">01</span></div>
+          <h3 class="font-semibold text-brand-950 text-lg">Not a one-time build</h3>
+        </div>
+        <p class="text-brand-600 text-[15px] leading-relaxed">Other agencies deliver a site and disappear. We deliver a site and then spend every month making it perform better. Your investment compounds.</p>
       </div>
       <div class="reveal reveal-delay-1 card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
-        <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5"><svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
-        <h3 class="font-serif text-xl text-brand-950 mb-2">Invisible to the people who matter</h3>
-        <p class="text-brand-600 leading-relaxed text-[15px]">Your ideal clients are searching right now. They're finding your competitors instead — not because they're better at what they do, but because they look like they are.</p>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0"><span class="font-serif text-lg text-brand-700">02</span></div>
+          <h3 class="font-semibold text-brand-950 text-lg">Data, not opinions</h3>
+        </div>
+        <p class="text-brand-600 text-[15px] leading-relaxed">Every improvement is backed by real visitor data — heatmaps, conversion rates, search rankings. We don't guess. We measure, analyze, and act.</p>
       </div>
       <div class="reveal card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
-        <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5"><svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.556a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.34 8.342" transform="translate(1,2) scale(0.9)"/></svg></div>
-        <h3 class="font-serif text-xl text-brand-950 mb-2">The cringe of sharing your link</h3>
-        <p class="text-brand-600 leading-relaxed text-[15px]">You know the moment — someone asks for your website and you catch yourself adding disclaimers. "It's a work in progress." Your site should be something you hand out with confidence.</p>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0"><span class="font-serif text-lg text-brand-700">03</span></div>
+          <h3 class="font-semibold text-brand-950 text-lg">Built for your industry</h3>
+        </div>
+        <p class="text-brand-600 text-[15px] leading-relaxed">Fence companies, HVAC, salons, contractors, fitness studios. We know what converts in local service businesses because that's all we do.</p>
       </div>
       <div class="reveal reveal-delay-1 card-lift bg-white border border-brand-200 rounded-2xl p-7 sm:p-8">
-        <div class="w-11 h-11 rounded-xl bg-brand-100 flex items-center justify-center mb-5"><svg class="w-5 h-5 text-brand-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg></div>
-        <h3 class="font-serif text-xl text-brand-950 mb-2">Agency quotes that make no sense</h3>
-        <p class="text-brand-600 leading-relaxed text-[15px]">$15,000 for a five-page site. A 12-week timeline. Jargon-filled proposals. You don't need a branding agency — you need a great website, built with clarity, at a price that makes sense.</p>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0"><span class="font-serif text-lg text-brand-700">04</span></div>
+          <h3 class="font-semibold text-brand-950 text-lg">Zero effort on your end</h3>
+        </div>
+        <p class="text-brand-600 text-[15px] leading-relaxed">You'll get an email that says "Hey, we made something for you." You tap approve. That's it. No logins, no dashboards to learn, no meetings.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process" class="py-16 sm:py-24 bg-white">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="reveal text-center mb-14"><span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">How It Works</span><h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Four steps. Zero confusion.</h2></div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
-      <div class="reveal text-center"><div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">1</span></div><h3 class="font-semibold text-brand-950 mb-2">Mockup</h3><p class="text-sm text-brand-600 leading-relaxed">Send us your site. We'll send back a redesigned homepage in 48 hours.</p></div>
-      <div class="reveal reveal-delay-1 text-center"><div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">2</span></div><h3 class="font-semibold text-brand-950 mb-2">Design</h3><p class="text-sm text-brand-600 leading-relaxed">Love it? We'll design every page — aligned to your brand and your goals.</p></div>
-      <div class="reveal reveal-delay-2 text-center"><div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">3</span></div><h3 class="font-semibold text-brand-950 mb-2">Refine</h3><p class="text-sm text-brand-600 leading-relaxed">Two rounds of revisions. We adjust until every detail is right.</p></div>
-      <div class="reveal reveal-delay-3 text-center"><div class="w-14 h-14 rounded-xl bg-brand-950 flex items-center justify-center mx-auto mb-5"><span class="font-serif text-brand-50 text-xl">4</span></div><h3 class="font-semibold text-brand-950 mb-2">Launch</h3><p class="text-sm text-brand-600 leading-relaxed">Your site goes live — fast, responsive, and built to perform.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section id="why-us" class="py-16 sm:py-24 bg-brand-950 text-brand-100">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="reveal text-center mb-14"><span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Why Us</span><h2 class="font-serif text-3xl sm:text-4xl text-brand-50">Built differently. On purpose.</h2></div>
-    <div class="grid sm:grid-cols-2 gap-5">
-      <div class="reveal bg-brand-900/60 border border-brand-800 rounded-2xl p-7 sm:p-8"><span class="font-serif text-2xl text-brand-500 block mb-4">01</span><h3 class="font-semibold text-brand-50 text-lg mb-2">Streamlined workflow</h3><p class="text-brand-400 text-[15px] leading-relaxed">No kickoff meetings that could've been emails. No stakeholder syncs. We keep the process lean so the work stays focused.</p></div>
-      <div class="reveal reveal-delay-1 bg-brand-900/60 border border-brand-800 rounded-2xl p-7 sm:p-8"><span class="font-serif text-2xl text-brand-500 block mb-4">02</span><h3 class="font-semibold text-brand-50 text-lg mb-2">No bloated agencies</h3><p class="text-brand-400 text-[15px] leading-relaxed">You work directly with the people building your site. No account managers. No layers. Just clear, direct communication.</p></div>
-      <div class="reveal bg-brand-900/60 border border-brand-800 rounded-2xl p-7 sm:p-8"><span class="font-serif text-2xl text-brand-500 block mb-4">03</span><h3 class="font-semibold text-brand-50 text-lg mb-2">Clear scope</h3><p class="text-brand-400 text-[15px] leading-relaxed">Simple monthly pricing. Defined deliverables. You'll know exactly what you're getting and exactly what it costs before anything starts.</p></div>
-      <div class="reveal reveal-delay-1 bg-brand-900/60 border border-brand-800 rounded-2xl p-7 sm:p-8"><span class="font-serif text-2xl text-brand-500 block mb-4">04</span><h3 class="font-semibold text-brand-50 text-lg mb-2">Focused builds</h3><p class="text-brand-400 text-[15px] leading-relaxed">We take on a limited number of projects at a time. Yours gets full attention — not a slot in a production queue.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING — kept exactly from live site -->
+<!-- ==================== PRICING ==================== -->
 <section id="pricing" class="py-16 sm:py-24 bg-white">
   <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="reveal text-center mb-10"><span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Simple Pricing</span><h2 class="font-serif text-3xl sm:text-4xl text-brand-950">One subscription. Everything included.</h2><p class="text-brand-600 mt-4 max-w-lg mx-auto text-[15px] leading-relaxed">No hidden fees. Pick a plan, and your website is designed, built, hosted, and maintained — all in one subscription.</p></div>
+    <div class="reveal text-center mb-10">
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Pricing</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">A website that improves every month.</h2>
+      <p class="text-brand-600 mt-4 max-w-lg mx-auto text-[15px] leading-relaxed">Design, build, hosting, and ongoing monthly improvement — all in one subscription. No hidden fees. Cancel anytime.</p>
+    </div>
+
+    <!-- Billing toggle -->
     <div class="reveal flex items-center justify-center gap-4 mb-12">
       <span id="labelMonthly" class="text-sm font-semibold text-brand-950 transition-colors">Monthly</span>
       <button id="billingToggle" onclick="toggleBilling()" class="relative w-14 h-8 rounded-full bg-brand-200 transition-colors duration-300 focus:outline-none" aria-label="Toggle annual billing"><span id="toggleDot" class="absolute top-1 left-1 w-6 h-6 rounded-full bg-brand-950 transition-transform duration-300 ease-out shadow-sm"></span></button>
       <span id="labelAnnual" class="text-sm font-medium text-brand-500 transition-colors">Annual</span>
-      <span id="saveBadge" class="text-xs font-semibold bg-green-100 text-green-700 px-2.5 py-1 rounded-full opacity-0 transition-opacity duration-300">Save up to 16%</span>
+      <span id="saveBadge" class="text-xs font-semibold bg-green-100 text-green-700 px-2.5 py-1 rounded-full opacity-0 transition-opacity duration-300">Save up to 20%</span>
     </div>
+
+    <!-- Founder's pricing banner -->
     <div class="reveal flex items-center justify-center mb-10">
       <div class="inline-flex items-center gap-3 bg-green-50 border border-green-200 rounded-2xl px-6 py-4 max-w-lg w-full">
         <div class="w-9 h-9 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-        <div><p class="text-sm font-semibold text-green-800">Founder's Pricing — First 100 Customers Only</p><p class="text-xs text-green-600 mt-0.5">Lock in your discounted rate for life. Once we hit 100 customers, prices return to standard.</p></div>
+        <div><p class="text-sm font-semibold text-green-800">Founder's Pricing — Limited Availability</p><p class="text-xs text-green-600 mt-0.5">Lock in your discounted rate for life. Prices increase as we grow.</p></div>
       </div>
     </div>
+
+    <!-- Pricing cards -->
     <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
       <!-- Starter -->
       <div class="reveal card-lift bg-brand-50 border border-brand-200 rounded-2xl p-7 sm:p-8 flex flex-col">
-        <div class="mb-5"><h3 class="font-semibold text-brand-950 text-lg mb-1">Starter</h3><p class="text-sm text-brand-500">Perfect for getting online fast</p></div>
-        <div class="price-display mb-1" data-monthly-regular="199" data-monthly-founder="149" data-annual-regular="1,990" data-annual-founder="1,490"><div class="flex items-center gap-2 mb-1"><span class="text-brand-400 line-through text-lg font-medium regular-price">$199</span><span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Pricing</span></div><div><span class="font-serif text-4xl text-brand-950 price-amount">$149</span><span class="text-brand-500 text-sm price-period">/month</span></div></div>
-        <div class="annual-note hidden mb-5"><span class="text-xs text-green-600 font-medium">$1,490/yr — save $298 vs monthly</span></div>
-        <div class="mb-8 mt-4 flex-1"><ul class="space-y-3"><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Custom-designed homepage</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Up to 5 pages</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Mobile responsive</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Hosting &amp; SSL included</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basic SEO</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basic ecommerce integration</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>1 free landing page</li></ul></div>
-        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
+        <div class="mb-5"><h3 class="font-semibold text-brand-950 text-lg mb-1">Starter</h3><p class="text-sm text-brand-500">Get online with a site that grows</p></div>
+        <div class="price-display mb-1" data-monthly-regular="199" data-monthly-founder="149" data-annual-regular="1,908" data-annual-founder="1,428">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-brand-400 line-through text-lg font-medium regular-price">$199</span>
+            <span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Price</span>
+          </div>
+          <div><span class="font-serif text-4xl text-brand-950 price-amount">$149</span><span class="text-brand-500 text-sm price-period">/month</span></div>
+        </div>
+        <div class="annual-note hidden mb-5"><span class="text-xs text-green-600 font-medium">$119/mo billed annually — save $360/yr</span></div>
+        <div class="mb-8 mt-4 flex-1">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Custom 5-page website</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Mobile-optimized</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Hosting &amp; SSL included</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Basic SEO setup</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Site health monitoring</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12"/></svg><span><strong class="text-brand-950">Monthly:</strong> SEO &amp; content updates (auto-applied)</span></li>
+          </ul>
+        </div>
+        <a href="https://buy.stripe.com/00w7sM2pY1MFa4Gc303oA00" target="_blank" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
       </div>
+
       <!-- Growth -->
       <div class="reveal reveal-delay-1 card-lift pricing-popular bg-brand-50 border-2 border-brand-950 rounded-2xl p-7 sm:p-8 flex flex-col relative">
         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2"><span class="bg-brand-950 text-brand-50 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full">Most Popular</span></div>
-        <div class="mb-5"><h3 class="font-semibold text-brand-950 text-lg mb-1">Growth</h3><p class="text-sm text-brand-500">For businesses ready to scale</p></div>
-        <div class="price-display mb-1" data-monthly-regular="499" data-monthly-founder="349" data-annual-regular="4,990" data-annual-founder="3,490"><div class="flex items-center gap-2 mb-1"><span class="text-brand-400 line-through text-lg font-medium regular-price">$499</span><span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Pricing</span></div><div><span class="font-serif text-4xl text-brand-950 price-amount">$349</span><span class="text-brand-500 text-sm price-period">/month</span></div></div>
-        <div class="annual-note hidden mb-5"><span class="text-xs text-green-600 font-medium">$3,490/yr — save $698 vs monthly</span></div>
-        <div class="mb-8 mt-4 flex-1"><ul class="space-y-3"><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Starter</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Up to 10 pages</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Advanced SEO</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Blog integration</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Advanced ecommerce integration</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>1 free landing page / quarter</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Priority support</li></ul></div>
-        <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
+        <div class="mb-5"><h3 class="font-semibold text-brand-950 text-lg mb-1">Growth</h3><p class="text-sm text-brand-500">For businesses ready to convert more</p></div>
+        <div class="price-display mb-1" data-monthly-regular="449" data-monthly-founder="349" data-annual-regular="4,308" data-annual-founder="3,348">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-brand-400 line-through text-lg font-medium regular-price">$449</span>
+            <span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Price</span>
+          </div>
+          <div><span class="font-serif text-4xl text-brand-950 price-amount">$349</span><span class="text-brand-500 text-sm price-period">/month</span></div>
+        </div>
+        <div class="annual-note hidden mb-5"><span class="text-xs text-green-600 font-medium">$279/mo billed annually — save $840/yr</span></div>
+        <div class="mb-8 mt-4 flex-1">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Starter</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Up to 10 pages</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Analytics dashboard</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Heatmap tracking</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Priority support</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12"/></svg><span><strong class="text-brand-950">Monthly:</strong> Conversion &amp; design optimization (human-reviewed)</span></li>
+          </ul>
+        </div>
+        <a href="https://buy.stripe.com/bJe14o0hQ3UNgt4aYW3oA01" target="_blank" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
       </div>
+
       <!-- Premium -->
       <div class="reveal reveal-delay-2 card-lift bg-brand-50 border border-brand-200 rounded-2xl p-7 sm:p-8 flex flex-col">
-        <div class="mb-5"><h3 class="font-semibold text-brand-950 text-lg mb-1">Premium</h3><p class="text-sm text-brand-500">Full-service, white-glove treatment</p></div>
-        <div class="price-display mb-1" data-monthly-regular="999" data-monthly-founder="749" data-annual-regular="9,990" data-annual-founder="7,490"><div class="flex items-center gap-2 mb-1"><span class="text-brand-400 line-through text-lg font-medium regular-price">$999</span><span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Pricing</span></div><div><span class="font-serif text-4xl text-brand-950 price-amount">$749</span><span class="text-brand-500 text-sm price-period">/month</span></div></div>
-        <div class="annual-note hidden mb-5"><span class="text-xs text-green-600 font-medium">$7,490/yr — save $1,498 vs monthly</span></div>
-        <div class="mb-8 mt-4 flex-1"><ul class="space-y-3"><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Growth</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Unlimited pages</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>CRM integration</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Machine Learning SEO</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Page redesigns included</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Monthly landing page creation</li><li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dedicated account manager</li></ul></div>
+        <div class="mb-5"><h3 class="font-semibold text-brand-950 text-lg mb-1">Premium</h3><p class="text-sm text-brand-500">White-glove, full-service growth</p></div>
+        <div class="price-display mb-1" data-monthly-regular="999" data-monthly-founder="749" data-annual-regular="9,588" data-annual-founder="7,188">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-brand-400 line-through text-lg font-medium regular-price">$999</span>
+            <span class="inline-block text-[10px] font-bold tracking-wide uppercase bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Founder's Price</span>
+          </div>
+          <div><span class="font-serif text-4xl text-brand-950 price-amount">$749</span><span class="text-brand-500 text-sm price-period">/month</span></div>
+        </div>
+        <div class="annual-note hidden mb-5"><span class="text-xs text-green-600 font-medium">$599/mo billed annually — save $1,800/yr</span></div>
+        <div class="mb-8 mt-4 flex-1">
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Everything in Growth</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Unlimited pages</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Daily site monitoring</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Competitor benchmarking</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Dedicated account manager</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-brand-950 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>CRM integration</li>
+            <li class="flex items-start gap-3 text-[15px] text-brand-700"><svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12"/></svg><span><strong class="text-brand-950">Monthly:</strong> Advanced AI optimization + landing page creation</span></li>
+          </ul>
+        </div>
         <a href="#mockup" class="btn-glow inline-flex items-center justify-center w-full px-6 py-3 bg-brand-950 text-brand-50 text-sm font-semibold rounded-full hover:bg-brand-900 transition-colors">Get Started</a>
       </div>
     </div>
-    <p class="reveal text-center text-sm text-brand-500 mt-8">All plans include hosting, SSL, maintenance, and ongoing support. Cancel anytime.</p>
+    <p class="reveal text-center text-sm text-brand-500 mt-8">All plans include hosting, SSL, maintenance, and ongoing monthly improvements. Cancel anytime.</p>
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- ==================== FAQ ==================== -->
 <section id="faq" class="py-16 sm:py-24 bg-brand-50">
   <div class="max-w-2xl mx-auto px-5 sm:px-8">
-    <div class="reveal text-center mb-14"><span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Questions</span><h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Before you ask.</h2></div>
+    <div class="reveal text-center mb-14">
+      <span class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3 block">Questions</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-brand-950">Before you ask.</h2>
+    </div>
     <div class="reveal space-y-3">
-      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden"><summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>Is the mockup actually complimentary?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary><div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Yes. No credit card, no obligation, no hidden catch. We'll redesign your homepage as a mockup so you can see exactly what's possible. If you want to move forward, great. If not, you still walk away with a professional design concept you can reference.</div></details>
-      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden"><summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>What if I don't like the design?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary><div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">The mockup is a starting point — not a final product. If you love the direction but want adjustments, that's exactly what the design phase is for. If it's not the right fit at all, there's no pressure. We'd rather you find the right partner than feel locked in.</div></details>
-      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden"><summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>How long does a full website build take?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary><div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Most projects launch in 2 weeks from the start of the design phase. Timeline depends on the number of pages and the complexity of your needs, but we'll give you a clear schedule up front and stick to it.</div></details>
-      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden"><summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>Is this a template or fully custom?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary><div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Fully custom. Every design is built from scratch based on your brand, your audience, and your goals. We don't reskin templates and call it strategy. Your site will look and feel like yours — because it is.</div></details>
-      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden"><summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>Are there any upfront costs?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary><div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">None. Your subscription covers everything — design, development, hosting, SSL, maintenance, and ongoing updates. There are no setup fees, no deposits, and no surprise invoices. You can cancel anytime.</div></details>
+      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
+        <summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>Is the mockup actually free?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Yes. No credit card, no obligation, no hidden catch. We'll redesign your homepage as a mockup so you can see exactly what's possible. If you want to move forward, great. If not, you still walk away with a professional design concept you can reference.</div>
+      </details>
+      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
+        <summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>What happens each month after launch?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">We pull your real analytics — visitor behavior, bounce rates, conversion paths, keyword rankings — and identify the single highest-impact improvement. We build it, stage it for you, and send you a summary. You tap "Make It Live" and it goes to production. The whole thing takes about 30 seconds of your time.</div>
+      </details>
+      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
+        <summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>How do I approve changes?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">You'll get an email with a clear summary of what changed and why. It includes a preview link and a one-tap "Make It Live" button. No logins, no dashboards, no meetings. If you want changes, just reply to the email.</div>
+      </details>
+      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
+        <summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>What if I don't like an update?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Nothing goes live without your approval. If you don't like the direction, just tell us. We'll adjust it or skip that month and try something different next time. You're always in control.</div>
+      </details>
+      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
+        <summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>How long does a full website build take?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Most sites launch in about 2 weeks from the start of the design phase. The mockup comes first — free in 48 hours. If you love it and sign up, we move straight into the full build. We'll give you a clear timeline and stick to it.</div>
+      </details>
+      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
+        <summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>Is this a template or fully custom?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">Fully custom. Every design is built from scratch based on your brand, your audience, and your goals. We don't reskin templates and call it strategy. Your site will look and feel like yours — because it is.</div>
+      </details>
+      <details class="group border border-brand-200 rounded-2xl bg-white overflow-hidden">
+        <summary class="flex items-center justify-between p-6 font-medium text-brand-950"><span>Are there any upfront costs?</span><span class="faq-icon ml-4 flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-500 text-xl leading-none">+</span></summary>
+        <div class="faq-body px-6 pb-6 text-brand-600 text-[15px] leading-relaxed">None. Your subscription covers everything — design, development, hosting, SSL, monthly improvements, and support. No setup fees, no deposits, no surprise invoices. Cancel anytime.</div>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA — "Your turn." -->
+<!-- ==================== FINAL CTA ==================== -->
 <section id="mockup" class="noise relative py-20 sm:py-28 bg-brand-950 text-brand-100 overflow-hidden">
   <div class="max-w-2xl mx-auto px-5 sm:px-8 text-center">
     <div class="reveal">
       <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-brand-50 mb-4 leading-tight">Your turn.</h2>
-      <p class="text-brand-400 mb-10 text-lg">Drop your details and we'll send a complimentary homepage mockup. No strings, no call, no catch.</p>
+      <p class="text-brand-400 mb-10 text-lg">Drop your details and we'll redesign your homepage in 48 hours. No strings, no call, no catch.</p>
     </div>
     <div class="reveal reveal-delay-1" id="formWrapper">
       <div id="formContainer">
         <div class="space-y-4 max-w-md mx-auto text-left">
-          <div><label for="name" class="block text-sm font-medium text-brand-300 mb-1.5">Name</label><input type="text" id="name" required placeholder="Jane Smith" class="w-full px-4 py-3 rounded-xl bg-brand-900 border border-brand-700 text-brand-50 placeholder-brand-600 text-[15px] transition-colors focus:border-brand-500"></div>
-          <div><label for="email" class="block text-sm font-medium text-brand-300 mb-1.5">Email</label><input type="email" id="email" required placeholder="jane@example.com" class="w-full px-4 py-3 rounded-xl bg-brand-900 border border-brand-700 text-brand-50 placeholder-brand-600 text-[15px] transition-colors focus:border-brand-500"></div>
-          <div><label for="website" class="block text-sm font-medium text-brand-300 mb-1.5">Website URL</label><input type="text" inputmode="url" id="website" required placeholder="yoursite.com" class="w-full px-4 py-3 rounded-xl bg-brand-900 border border-brand-700 text-brand-50 placeholder-brand-600 text-[15px] transition-colors focus:border-brand-500"></div>
+          <div><label for="name" class="block text-sm font-medium text-brand-300 mb-1.5">Name</label><input type="text" id="name" required placeholder="Mike Rodriguez" class="w-full px-4 py-3 rounded-xl bg-brand-900 border border-brand-700 text-brand-50 placeholder-brand-600 text-[15px] transition-colors focus:border-brand-500"></div>
+          <div><label for="email" class="block text-sm font-medium text-brand-300 mb-1.5">Email</label><input type="email" id="email" required placeholder="mike@yourcompany.com" class="w-full px-4 py-3 rounded-xl bg-brand-900 border border-brand-700 text-brand-50 placeholder-brand-600 text-[15px] transition-colors focus:border-brand-500"></div>
+          <div><label for="website" class="block text-sm font-medium text-brand-300 mb-1.5">Your Current Website</label><input type="text" inputmode="url" id="website" required placeholder="yoursite.com" class="w-full px-4 py-3 rounded-xl bg-brand-900 border border-brand-700 text-brand-50 placeholder-brand-600 text-[15px] transition-colors focus:border-brand-500"></div>
           <button type="button" id="submitBtn" onclick="submitForm()" class="btn-glow w-full mt-2 inline-flex items-center justify-center px-8 py-3.5 bg-brand-50 text-brand-950 text-base font-semibold rounded-full hover:bg-white transition-colors">Send Me My Mockup</button>
         </div>
       </div>
@@ -382,32 +793,36 @@ input:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(26,25,21,.12)}
   <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-t from-brand-800/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 </section>
 
-<!-- FOOTER -->
+<!-- ==================== FOOTER ==================== -->
 <footer class="py-10 bg-brand-950 border-t border-brand-800">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-3"><div class="w-7 h-7 rounded-lg bg-brand-800 flex items-center justify-center"><span class="text-brand-300 font-serif text-sm leading-none mt-px">B</span></div><span class="text-sm text-brand-500">Quality, without the wait.</span></div>
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 rounded-lg bg-brand-800 flex items-center justify-center"><span class="text-brand-300 font-serif text-sm leading-none mt-px">B</span></div>
+      <span class="text-sm text-brand-500">A website that just keeps getting better.</span>
+    </div>
     <div class="flex items-center gap-4 flex-wrap justify-center">
       <a href="./privacy-policy.html" class="text-xs text-brand-500 hover:text-brand-300 transition-colors">Privacy Policy</a><span class="text-brand-700 text-xs">·</span>
       <a href="./terms.html" class="text-xs text-brand-500 hover:text-brand-300 transition-colors">Terms of Use</a><span class="text-brand-700 text-xs">·</span>
-      <span class="text-xs text-brand-600">© 2026 Better.Website. All rights reserved.</span>
+      <span class="text-xs text-brand-600">&copy; 2026 Better.Website. All rights reserved.</span>
     </div>
   </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
+<!-- ==================== STICKY MOBILE CTA ==================== -->
 <div class="sticky-cta" id="stickyCta">
   <a href="#mockup" class="btn-glow flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-brand-950 text-brand-50 text-sm font-semibold">Get Your Free Mockup <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
 </div>
 
+<!-- ==================== SCRIPTS ==================== -->
 <script>
-// NAV
+// NAV scroll behavior
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('nav-scrolled',window.scrollY>20);
   document.getElementById('stickyCta').classList.toggle('show',window.scrollY>600);
 },{passive:true});
 
-// REVEAL
+// REVEAL on scroll
 const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
@@ -441,7 +856,7 @@ async function submitForm(){
   err.classList.add('hidden');btn.disabled=true;btn.innerHTML='<div class="spinner"></div>';
   try{
     const res=await fetch('https://formspree.io/f/mjgeqddy',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,website})});
-    if(res.ok){document.getElementById('formContainer').classList.add('hidden');document.getElementById('successState').classList.remove('hidden')}else{throw new Error()}
+    if(res.ok){document.getElementById('formContainer').classList.add('hidden');document.getElementById('successState').classList.remove('hidden');if(typeof fbq==='function')fbq('track','Lead')}else{throw new Error()}
   }catch{btn.disabled=false;btn.innerHTML='Send Me My Mockup';err.classList.remove('hidden')}
 }
 function retryForm(){document.getElementById('errorState').classList.add('hidden');submitForm()}
@@ -451,8 +866,13 @@ let isAnnual=false;
 function toggleBilling(){
   isAnnual=!isAnnual;
   const dot=document.getElementById('toggleDot'),toggle=document.getElementById('billingToggle'),lm=document.getElementById('labelMonthly'),la=document.getElementById('labelAnnual'),badge=document.getElementById('saveBadge');
-  if(isAnnual){dot.style.transform='translateX(24px)';dot.classList.replace('bg-brand-950','bg-brand-50');toggle.classList.replace('bg-brand-200','bg-brand-950');lm.className='text-sm font-medium text-brand-500 transition-colors';la.className='text-sm font-semibold text-brand-950 transition-colors';badge.style.opacity='1'}
-  else{dot.style.transform='translateX(0)';dot.classList.replace('bg-brand-50','bg-brand-950');toggle.classList.replace('bg-brand-950','bg-brand-200');lm.className='text-sm font-semibold text-brand-950 transition-colors';la.className='text-sm font-medium text-brand-500 transition-colors';badge.style.opacity='0'}
+  if(isAnnual){
+    dot.style.transform='translateX(24px)';dot.classList.replace('bg-brand-950','bg-brand-50');toggle.classList.replace('bg-brand-200','bg-brand-950');
+    lm.className='text-sm font-medium text-brand-500 transition-colors';la.className='text-sm font-semibold text-brand-950 transition-colors';badge.style.opacity='1';
+  }else{
+    dot.style.transform='translateX(0)';dot.classList.replace('bg-brand-50','bg-brand-950');toggle.classList.replace('bg-brand-950','bg-brand-200');
+    lm.className='text-sm font-semibold text-brand-950 transition-colors';la.className='text-sm font-medium text-brand-500 transition-colors';badge.style.opacity='0';
+  }
   document.querySelectorAll('.price-display').forEach(el=>{
     const amt=el.querySelector('.price-amount'),period=el.querySelector('.price-period'),reg=el.querySelector('.regular-price');
     if(isAnnual){amt.textContent='$'+el.dataset.annualFounder;period.textContent='/year';reg.textContent='$'+el.dataset.annualRegular}
@@ -460,6 +880,134 @@ function toggleBilling(){
   });
   document.querySelectorAll('.annual-note').forEach(el=>el.classList.toggle('hidden',!isAnnual));
 }
+
+// AUDIT TOOL LAUNCH
+function launchAudit(){
+  const url=document.getElementById('auditUrl').value.trim();
+  if(url){window.open('https://better-website-tools-audittool-back.vercel.app?url='+encodeURIComponent(url),'_blank')}
+  else{window.open('https://better-website-tools-audittool-back.vercel.app','_blank')}
+}
+
+// PAGE TRANSFORMATION — varied editorial choreography, fast
+(async function(){
+  const b=document.body;
+  const w=ms=>new Promise(r=>setTimeout(r,ms));
+
+  // ── Utility: fast type ──
+  async function type(el,word,speed){
+    for(let i=0;i<word.length;i++){el.textContent+=word[i];await w(speed)}
+  }
+
+  // ════════ HOLD ugly state ════════
+  await w(1600);
+
+  // ═══ 1. NAV — CSS transition ═══
+  b.classList.remove('ugly-nav');
+  await w(400);
+
+  // ═══ 2. BACKGROUND ═══
+  b.classList.remove('ugly-bg');
+  await w(200);
+
+  // ═══ 3. EYEBROW — ✂️ CUT: split in half, pieces fall away ═══
+  const eye=document.getElementById('heroEyebrow');
+  const eyeText=eye.textContent;
+  const mid=Math.floor(eyeText.length/2);
+  eye.innerHTML='<span class="edit-cut-left">'+eyeText.slice(0,mid)+'</span><span class="edit-cut-right">'+eyeText.slice(mid)+'</span>';
+  eye.classList.add('edit-cut');
+  await w(100);
+  eye.classList.add('edit-cut-go');
+  await w(400);
+  b.classList.remove('ugly-eyebrow');
+  eye.textContent='';
+  eye.classList.remove('edit-cut','edit-cut-go');
+  eye.classList.add('edit-cursor');
+  await type(eye,'Free Homepage Mockup — 48 Hours',25);
+  eye.classList.remove('edit-cursor');
+  eye.classList.add('edit-done');
+  await w(350);
+  eye.classList.remove('edit-done');
+  await w(80);
+
+  // ═══ 4. H1 — ✍️ STRIKE + RETYPE, then cycle words ═══
+  const h1=document.getElementById('heroH1');
+  h1.classList.add('edit-select');
+  await w(300);
+  h1.classList.add('edit-strike');
+  await w(300);
+  h1.classList.add('edit-dimmed');
+  await w(200);
+  h1.classList.remove('edit-select','edit-strike');
+  // Fast wipe
+  const h1t=h1.textContent;
+  for(let i=h1t.length;i>0;i-=4){h1.textContent=h1t.substring(0,Math.max(0,i-4));await w(15)}
+  h1.textContent='';
+  await w(150);
+  b.classList.remove('ugly-h1');
+  h1.classList.remove('edit-dimmed');
+  h1.classList.add('edit-cursor');
+  await type(h1,'A Better Website',50);
+  h1.classList.remove('edit-cursor');
+  h1.classList.add('edit-done');
+  await w(400);
+  h1.classList.remove('edit-done');
+  // Restructure H1 for cycling
+  h1.innerHTML='A <span id="heroWord">Better</span> Website';
+  await w(80);
+
+  // Start word cycling (runs forever after page transformation completes)
+  const words=['Better','Smarter','Self-Improving','Living','Growing','Changing','Autonomous'];
+  let wi=0;
+  async function cycleWord(){
+    const el=document.getElementById('heroWord');
+    if(!el)return;
+    el.classList.add('cycle-out');
+    await w(300);
+    wi=(wi+1)%words.length;
+    el.textContent=words[wi];
+    el.classList.remove('cycle-out');
+    el.classList.add('cycle-in');
+    await w(300);
+    el.classList.remove('cycle-in');
+  }
+  setInterval(cycleWord,2800);
+
+  // ═══ 5. SUBHEADING — ↗ DRAG: slides off right, new slides in from left ═══
+  const sub=document.getElementById('heroSub');
+  sub.classList.add('edit-drag-out');
+  await w(420);
+  b.classList.remove('ugly-sub');
+  sub.textContent='Websites that consistently learn and grow from real data.';
+  sub.classList.remove('edit-drag-out');
+  sub.classList.add('edit-drag-in');
+  await w(420);
+  sub.classList.remove('edit-drag-in');
+  await w(80);
+
+  // ═══ 6. CTA — 🔄 FLIP: 3D rotation out, polished version flips in ═══
+  const cta=document.getElementById('heroCta');
+  cta.classList.add('edit-flip');
+  await w(380);
+  b.classList.remove('ugly-cta');
+  cta.textContent='Get Your Free Mockup';
+  cta.innerHTML+=' <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
+  cta.classList.remove('edit-flip');
+  cta.classList.add('edit-flip-in');
+  await w(380);
+  cta.classList.remove('edit-flip-in');
+
+  // 7. Subtitle appears
+  document.getElementById('heroCtaSub').style.opacity='1';
+  await w(300);
+
+  // ═══ 8. GRAND FINALE — card appears + score bar ═══
+  b.classList.remove('ugly-card');
+  await w(400);
+  const heroBar=document.getElementById('heroScoreBar');
+  if(heroBar)heroBar.classList.add('animate');
+  await w(200);
+  document.querySelector('.hero-section').classList.add('complete');
+})();
 
 // MOBILE MENU
 let mobileMenuOpen=false;
