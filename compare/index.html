@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Better.Website — Why Ours Is the Better Website</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07070B;
+    --hero: #3EE089;
+    --hero-dim: rgba(62,224,137,0.12);
+    --hero-fill: rgba(62,224,137,0.04);
+    --hero-glow-c: rgba(62,224,137,0.1);
+    --hero-ambient: rgba(62,224,137,0.018);
+    --hero-pill-bg: rgba(62,224,137,0.08);
+    --text-primary: rgba(255,255,255,0.92);
+    --text-secondary: rgba(255,255,255,0.44);
+    --text-tertiary: rgba(255,255,255,0.22);
+    --text-label: rgba(255,255,255,0.72);
+    --grid-line: rgba(255,255,255,0.04);
+    --grid-outer: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+  }
+
+  /* ─── Desktop: side by side ─── */
+  .narrative {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 40px 48px 48px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.2s;
+  }
+
+  .headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+  }
+
+  .headline em {
+    color: var(--hero);
+    font-style: italic;
+  }
+
+  .competitors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .comp-item {
+    padding: 14px 0;
+    cursor: pointer;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.4s ease;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .comp-item:last-child {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .comp-item .comp-name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition: color 0.4s ease, opacity 0.4s ease;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .comp-swatch {
+    width: 10px;
+    height: 3px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .comp-item .comp-blurb {
+    font-size: 12px;
+    font-weight: 400;
+    color: transparent;
+    line-height: 1.45;
+    max-height: 0;
+    overflow: hidden;
+    transition: color 0.4s ease, max-height 0.5s ease;
+    padding-left: 18px;
+  }
+
+  .comp-item.active .comp-name { opacity: 1; }
+  .comp-item.active .comp-blurb { color: var(--text-secondary); max-height: 60px; }
+  .comp-item.inactive { opacity: 0.4; }
+  .comp-item.all-active .comp-name { opacity: 0.8; }
+
+  .comp-gap {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    padding-left: 18px;
+  }
+
+  .comp-item.active .comp-gap { max-height: 80px; }
+
+  .gap-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    padding: 3px 7px;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .comp-item.active .gap-pill {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gap-pill.behind {
+    background: var(--hero-pill-bg);
+    color: var(--hero);
+  }
+
+  .gap-pill.ahead {
+    background: rgba(255,255,255,0.05);
+    color: var(--text-secondary);
+  }
+
+  .see-all-btn {
+    margin-top: 18px;
+    padding: 10px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    background: none;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.4s ease forwards 0.9s;
+  }
+
+  .see-all-btn:hover {
+    color: var(--text-secondary);
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .see-all-btn.active {
+    color: var(--hero);
+    border-color: rgba(62,224,137,0.2);
+    background: rgba(62,224,137,0.04);
+  }
+
+  .chart-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .chart-area::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse, var(--hero-ambient) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  svg.radar {
+    width: 680px;
+    height: 680px;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ring {
+    fill: none;
+    stroke: var(--grid-line);
+    stroke-width: 0.6;
+    opacity: 0;
+    animation: softIn 0.8s ease forwards;
+  }
+  .ring-outer { stroke: var(--grid-outer); stroke-width: 0.8; }
+
+  .spoke {
+    stroke: var(--grid-line);
+    stroke-width: 0.4;
+    opacity: 0;
+    animation: softIn 0.8s ease forwards;
+  }
+
+  @keyframes softIn { to { opacity: 1; } }
+
+  .cat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    fill: var(--hero);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    opacity: 0;
+    animation: softIn 0.6s ease forwards;
+  }
+
+  .territory-fill {
+    fill: var(--hero-fill);
+    stroke: none;
+    opacity: 0;
+    animation: territoryIn 1s ease forwards 0.8s;
+    transition: opacity 0.5s ease;
+  }
+  .territory-fill.dimmed { opacity: 0 !important; }
+  @keyframes territoryIn { to { opacity: 1; } }
+
+  .hero-poly {
+    fill: none;
+    stroke: var(--hero);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-dasharray: 2600;
+    stroke-dashoffset: 2600;
+    animation: drawLine 1.8s ease forwards 0.3s;
+  }
+
+  .hero-glow {
+    fill: none;
+    stroke: var(--hero);
+    stroke-width: 6;
+    stroke-linejoin: round;
+    opacity: 0;
+    filter: blur(6px);
+    pointer-events: none;
+    animation: glowIn 1s ease forwards 1.2s;
+  }
+  @keyframes glowIn { to { opacity: 0.1; } }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+  .hero-dot {
+    fill: var(--hero);
+    r: 0;
+    opacity: 0;
+    animation: dotIn 0.3s ease forwards;
+  }
+  @keyframes dotIn { to { r: 2.5; opacity: 0.8; } }
+
+  .hero-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    fill: var(--hero);
+    text-anchor: middle;
+    dominant-baseline: middle;
+    opacity: 0;
+    animation: softIn 0.4s ease forwards;
+  }
+
+  .comp-poly {
+    fill: none;
+    stroke-width: 1.3;
+    stroke-linejoin: round;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .comp-poly.visible { opacity: 1; stroke-width: 1.6; }
+  .comp-poly.all-visible { opacity: 0.5; }
+
+  .comp-fill {
+    stroke: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .comp-fill.visible { opacity: 1; }
+
+  .gap-segment {
+    fill: rgba(62,224,137,0.05);
+    stroke: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .gap-segment.visible { opacity: 1; }
+
+  .comp-dot {
+    r: 0;
+    transition: r 0.3s ease;
+    pointer-events: none;
+  }
+  .comp-dot.visible { r: 2.5; }
+
+  .comp-score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 500;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .comp-score-label.visible { opacity: 0.85; }
+
+  .hover-zone {
+    fill: transparent;
+    stroke: none;
+    cursor: crosshair;
+  }
+
+  .tooltip {
+    position: absolute;
+    background: rgba(12,12,18,0.96);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 11px 14px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 10;
+    min-width: 155px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  }
+  .tooltip.show { opacity: 1; transform: translateY(0); }
+
+  .tooltip-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .tooltip-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tooltip-row:last-child { margin-bottom: 0; }
+
+  .tooltip-row.is-hero .tooltip-row-name { color: var(--hero); font-weight: 700; }
+  .tooltip-row.is-hero .tooltip-row-score { color: var(--hero); }
+
+  .tooltip-swatch {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tooltip-row-name { flex: 1; color: var(--text-secondary); }
+
+  .tooltip-row-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─────────────────────────────────────
+     MOBILE: stack vertically
+     ───────────────────────────────────── */
+  @media (max-width: 860px) {
+    body {
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: auto;
+    }
+
+    .narrative {
+      width: 100%;
+      padding: 36px 24px 0 24px;
+      order: 1;
+    }
+
+    .headline {
+      font-size: 36px;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    /* Hide headline line breaks on mobile, flow naturally */
+    .headline br { display: none; }
+
+    .chart-area {
+      width: 100%;
+      order: 2;
+      min-height: auto;
+      padding: 8px 0;
+    }
+
+    .chart-area::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    svg.radar {
+      width: 96vw;
+      height: 96vw;
+      max-width: 500px;
+      max-height: 500px;
+    }
+
+    .cat-label { font-size: 7.5px; }
+    .hero-score { font-size: 8px; }
+
+    .competitors-section {
+      order: 3;
+    }
+
+    /* On mobile, competitors list sits below the chart */
+    .competitors-list {
+      width: 100%;
+    }
+
+    .comp-item {
+      padding: 12px 0;
+    }
+
+    .comp-item .comp-name { font-size: 13px; }
+    .comp-item .comp-blurb { font-size: 11.5px; }
+
+    .gap-pill { font-size: 8.5px; padding: 2px 6px; }
+
+    .see-all-btn {
+      margin-top: 14px;
+      margin-bottom: 32px;
+      padding: 12px 0;
+      font-size: 10px;
+    }
+
+    /* Tooltip adjustments */
+    .tooltip {
+      font-size: 10px;
+      min-width: 140px;
+      max-width: 200px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .narrative { padding: 28px 18px 0 18px; }
+
+    .headline { font-size: 30px; }
+
+    svg.radar {
+      width: 100vw;
+      height: 100vw;
+    }
+
+    .cat-label { font-size: 7px; letter-spacing: 0.06em; }
+    .hero-score { font-size: 7.5px; }
+    .comp-score-label { font-size: 7.5px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="narrative">
+  <h1 class="headline">Why ours<br>is the <em>Better</em><br>website.</h1>
+
+  <div class="chart-area">
+    <!-- Chart lives inside narrative on mobile via reorder, but CSS flex order handles it -->
+  </div>
+
+  <div class="competitors-list" id="compList"></div>
+  <button class="see-all-btn" id="seeAllBtn">See all competitors</button>
+</div>
+
+<!-- Desktop: chart here. Mobile: moved via JS -->
+<div class="chart-area" id="chartArea">
+  <svg class="radar" id="radar" viewBox="-400 -400 800 800"></svg>
+  <div class="tooltip" id="tooltip"></div>
+</div>
+
+<script>
+// ── Responsive layout: move chart into narrative on mobile ──
+const chartArea = document.getElementById('chartArea');
+const narrativeEl = document.querySelector('.narrative');
+const compListEl = document.getElementById('compList');
+const seeAllBtn = document.getElementById('seeAllBtn');
+// Remove the empty placeholder chart-area inside narrative
+narrativeEl.querySelector('.chart-area').remove();
+
+let isMobile = window.innerWidth <= 860;
+
+function handleLayout() {
+  const wasMobile = isMobile;
+  isMobile = window.innerWidth <= 860;
+  if (isMobile === wasMobile) return;
+
+  if (isMobile) {
+    // Insert chart between headline and competitors
+    narrativeEl.insertBefore(chartArea, compListEl);
+  } else {
+    // Move chart back to body level
+    document.body.appendChild(chartArea);
+  }
+}
+
+// Initial placement
+if (isMobile) {
+  narrativeEl.insertBefore(chartArea, compListEl);
+}
+
+window.addEventListener('resize', handleLayout);
+
+// ── Data ──
+const CATEGORIES = [
+  'DESIGN\nQUALITY', 'LOW\nMAINTENANCE', 'SECURITY', 'EASE OF\nUSE',
+  'LIFETIME\nVALUE', 'COST', 'SEO &\nSPEED', 'SETUP\nTIME'
+];
+
+const CAT_SHORT = [
+  'Design', 'Maintenance', 'Security', 'Ease of Use',
+  'Lifetime Value', 'Cost', 'SEO & Speed', 'Setup Time'
+];
+
+const HERO = { key: 'better', name: 'Better.Website', scores: [9.5, 9.5, 9.5, 9.0, 9.5, 8.0, 9.5, 9.5] };
+
+const COMPETITORS = [
+  {
+    key: 'squarespace', name: 'Squarespace',
+    blurb: 'Cheaper to start. Expensive to outgrow.',
+    scores: [7.0, 5.0, 6.0, 7.0, 5.5, 8.5, 5.0, 7.5],
+    color: '#6B8DAF',
+    fillColor: 'rgba(107,141,175,0.04)',
+  },
+  {
+    key: 'wix', name: 'Wix',
+    blurb: 'Easy drag-and-drop. Hard to take seriously.',
+    scores: [5.5, 4.5, 5.0, 7.0, 5.0, 9.0, 4.0, 7.5],
+    color: '#B07AA1',
+    fillColor: 'rgba(176,122,161,0.04)',
+  },
+  {
+    key: 'wordpress', name: 'WordPress DIY',
+    blurb: 'Maximum control. Maximum headaches.',
+    scores: [5.0, 3.0, 3.5, 4.0, 5.5, 9.5, 5.5, 3.5],
+    color: '#8EAA7C',
+    fillColor: 'rgba(142,170,124,0.04)',
+  },
+  {
+    key: 'agency', name: 'Big Agency',
+    blurb: 'Brilliant work. Six months and six figures.',
+    scores: [9.8, 8.0, 9.5, 3.0, 2.5, 2.0, 9.5, 2.0],
+    color: '#C9896A',
+    fillColor: 'rgba(201,137,106,0.04)',
+  },
+  {
+    key: 'freelancer', name: 'Freelancer',
+    blurb: 'Personal touch. Until they go quiet.',
+    scores: [6.0, 4.0, 4.5, 5.5, 5.0, 7.5, 5.0, 4.0],
+    color: '#A0937D',
+    fillColor: 'rgba(160,147,125,0.04)',
+  },
+];
+
+const NUM = CATEGORIES.length;
+const MAX = 10;
+const R = 300;
+const RINGS = 5;
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+const svg = document.getElementById('radar');
+const tooltip = document.getElementById('tooltip');
+
+function polar(i, val) {
+  const a = (Math.PI * 2 * i / NUM) - Math.PI / 2;
+  const r = R * (val / MAX);
+  return [r * Math.cos(a), r * Math.sin(a)];
+}
+
+function pts(scores) {
+  return scores.map((s, i) => polar(i, s).join(',')).join(' ');
+}
+
+function el(tag, attrs = {}) {
+  const e = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  return e;
+}
+
+// ── Grid ──
+const gridG = el('g');
+svg.appendChild(gridG);
+
+for (let i = 1; i <= RINGS; i++) {
+  const r = R * i / RINGS;
+  const ring = el('circle', { cx: 0, cy: 0, r, class: i === RINGS ? 'ring ring-outer' : 'ring' });
+  ring.style.animationDelay = `${0.08 * i}s`;
+  gridG.appendChild(ring);
+}
+
+for (let i = 0; i < NUM; i++) {
+  const [x, y] = polar(i, MAX);
+  const spoke = el('line', { x1: 0, y1: 0, x2: x, y2: y, class: 'spoke' });
+  spoke.style.animationDelay = `${0.15 + i * 0.04}s`;
+  gridG.appendChild(spoke);
+}
+
+// ── Labels ──
+CATEGORIES.forEach((cat, i) => {
+  const [x, y] = polar(i, MAX);
+  const a = (Math.PI * 2 * i / NUM) - Math.PI / 2;
+  const off = 36;
+  const lx = x + off * Math.cos(a);
+  const ly = y + off * Math.sin(a);
+  const lines = cat.split('\n');
+  const text = el('text', { x: lx, y: ly, class: 'cat-label' });
+  text.style.animationDelay = `${0.4 + i * 0.06}s`;
+  lines.forEach((line, j) => {
+    const tspan = el('tspan', { x: lx, dy: j === 0 ? `${-(lines.length - 1) * 0.55}em` : '1.15em' });
+    tspan.textContent = line;
+    text.appendChild(tspan);
+  });
+  svg.appendChild(text);
+});
+
+// ── Hover zones ──
+const hoverG = el('g');
+svg.appendChild(hoverG);
+for (let i = 0; i < NUM; i++) {
+  const a1 = (Math.PI * 2 * (i - 0.5) / NUM) - Math.PI / 2;
+  const a2 = (Math.PI * 2 * (i + 0.5) / NUM) - Math.PI / 2;
+  const bigR = R + 60;
+  hoverG.appendChild(el('path', {
+    d: `M0,0 L${bigR * Math.cos(a1)},${bigR * Math.sin(a1)} A${bigR},${bigR} 0 0,1 ${bigR * Math.cos(a2)},${bigR * Math.sin(a2)} Z`,
+    class: 'hover-zone', 'data-cat': i
+  }));
+}
+
+// ── Data ──
+const dataG = el('g');
+svg.appendChild(dataG);
+
+const heroPoints = pts(HERO.scores);
+const territoryFill = el('polygon', { points: heroPoints, class: 'territory-fill' });
+dataG.appendChild(territoryFill);
+
+const compPolyMap = {}, compFillMap = {}, compDotMap = {}, compScoreMap = {}, gapSegMap = {};
+
+COMPETITORS.forEach(comp => {
+  const segments = [];
+  for (let i = 0; i < NUM; i++) {
+    const hv = HERO.scores[i], cv = comp.scores[i];
+    if (hv > cv) {
+      const ni = (i + 1) % NUM;
+      const hvn = HERO.scores[ni], cvn = comp.scores[ni];
+      if (hvn > cvn) {
+        const [hx, hy] = polar(i, hv);
+        const [cx, cy] = polar(i, cv);
+        const [hxn, hyn] = polar(ni, hvn);
+        const [cxn, cyn] = polar(ni, cvn);
+        const seg = el('polygon', {
+          points: `${cx},${cy} ${hx},${hy} ${hxn},${hyn} ${cxn},${cyn}`,
+          class: 'gap-segment'
+        });
+        dataG.appendChild(seg);
+        segments.push(seg);
+      }
+    }
+  }
+  gapSegMap[comp.key] = segments;
+
+  const fill = el('polygon', { points: pts(comp.scores), class: 'comp-fill', fill: comp.fillColor });
+  dataG.appendChild(fill);
+  compFillMap[comp.key] = fill;
+
+  const poly = el('polygon', { points: pts(comp.scores), class: 'comp-poly', stroke: comp.color });
+  dataG.appendChild(poly);
+  compPolyMap[comp.key] = poly;
+
+  const dots = [], labels = [];
+  comp.scores.forEach((s, i) => {
+    const [cx, cy] = polar(i, s);
+    const dot = el('circle', { cx, cy, class: 'comp-dot', fill: comp.color });
+    dataG.appendChild(dot);
+    dots.push(dot);
+
+    const a = (Math.PI * 2 * i / NUM) - Math.PI / 2;
+    const lbl = el('text', {
+      x: cx + -16 * Math.cos(a), y: cy + -16 * Math.sin(a),
+      class: 'comp-score-label', fill: comp.color
+    });
+    lbl.textContent = s.toFixed(1);
+    dataG.appendChild(lbl);
+    labels.push(lbl);
+  });
+  compDotMap[comp.key] = dots;
+  compScoreMap[comp.key] = labels;
+});
+
+// Hero layers
+dataG.appendChild(el('polygon', { points: heroPoints, class: 'hero-glow' }));
+dataG.appendChild(el('polygon', { points: heroPoints, class: 'hero-poly' }));
+
+HERO.scores.forEach((s, i) => {
+  const [cx, cy] = polar(i, s);
+  const dot = el('circle', { cx, cy, class: 'hero-dot' });
+  dot.style.animationDelay = `${1.8 + i * 0.07}s`;
+  dataG.appendChild(dot);
+
+  const a = (Math.PI * 2 * i / NUM) - Math.PI / 2;
+  const label = el('text', {
+    x: cx + 18 * Math.cos(a), y: cy + 18 * Math.sin(a),
+    class: 'hero-score'
+  });
+  label.textContent = s.toFixed(1);
+  label.style.animationDelay = `${2.0 + i * 0.07}s`;
+  dataG.appendChild(label);
+});
+
+// ── Legend ──
+let activeComp = null;
+let showAll = false;
+
+COMPETITORS.forEach((comp, idx) => {
+  const item = document.createElement('div');
+  item.className = 'comp-item';
+  item.dataset.key = comp.key;
+  item.style.animationDelay = `${0.5 + idx * 0.08}s`;
+
+  const pills = [];
+  for (let i = 0; i < NUM; i++) {
+    const diff = HERO.scores[i] - comp.scores[i];
+    if (diff > 0) {
+      pills.push(`<span class="gap-pill behind" style="transition-delay:${i * 0.03}s">+${diff.toFixed(1)} ${CAT_SHORT[i]}</span>`);
+    } else if (diff < 0) {
+      pills.push(`<span class="gap-pill ahead" style="transition-delay:${i * 0.03}s">${diff.toFixed(1)} ${CAT_SHORT[i]}</span>`);
+    }
+  }
+
+  item.innerHTML = `
+    <div class="comp-name" style="color:${comp.color}">
+      <span class="comp-swatch" style="background:${comp.color}"></span>
+      ${comp.name}
+    </div>
+    <div class="comp-blurb">${comp.blurb}</div>
+    <div class="comp-gap">${pills.join('')}</div>
+  `;
+
+  // Desktop: hover. Mobile: tap to toggle.
+  item.addEventListener('mouseenter', () => {
+    if (isMobile || showAll) return;
+    activeComp = comp.key;
+    update();
+  });
+  item.addEventListener('mouseleave', () => {
+    if (isMobile || showAll) return;
+    activeComp = null;
+    update();
+  });
+  item.addEventListener('click', (e) => {
+    if (!isMobile && !showAll) return;
+    if (showAll) return;
+    e.preventDefault();
+    activeComp = activeComp === comp.key ? null : comp.key;
+    update();
+  });
+
+  // Mobile tap also works outside showAll mode
+  item.addEventListener('touchend', (e) => {
+    if (showAll) return;
+    e.preventDefault();
+    activeComp = activeComp === comp.key ? null : comp.key;
+    update();
+  });
+
+  compListEl.appendChild(item);
+});
+
+// See All
+seeAllBtn.addEventListener('click', () => {
+  showAll = !showAll;
+  activeComp = null;
+  seeAllBtn.textContent = showAll ? 'Focus one at a time' : 'See all competitors';
+  seeAllBtn.classList.toggle('active', showAll);
+  update();
+});
+
+function update() {
+  document.querySelectorAll('.comp-item').forEach(el => {
+    el.classList.remove('active', 'inactive', 'all-active');
+    if (showAll) {
+      el.classList.add('all-active');
+    } else if (activeComp) {
+      el.classList.toggle('active', el.dataset.key === activeComp);
+      el.classList.toggle('inactive', el.dataset.key !== activeComp);
+    }
+  });
+
+  territoryFill.classList.toggle('dimmed', activeComp !== null && !showAll);
+
+  COMPETITORS.forEach(comp => {
+    const isSingle = !showAll && comp.key === activeComp;
+    const isAll = showAll;
+
+    compPolyMap[comp.key].classList.remove('visible', 'all-visible');
+    compFillMap[comp.key].classList.remove('visible');
+    compDotMap[comp.key].forEach(d => d.classList.remove('visible'));
+    compScoreMap[comp.key].forEach(l => l.classList.remove('visible'));
+    gapSegMap[comp.key].forEach(s => s.classList.remove('visible'));
+
+    if (isSingle) {
+      compPolyMap[comp.key].classList.add('visible');
+      compFillMap[comp.key].classList.add('visible');
+      compDotMap[comp.key].forEach(d => d.classList.add('visible'));
+      compScoreMap[comp.key].forEach(l => l.classList.add('visible'));
+      gapSegMap[comp.key].forEach(s => s.classList.add('visible'));
+    } else if (isAll) {
+      compPolyMap[comp.key].classList.add('all-visible');
+    }
+  });
+}
+
+// ── Tooltip ──
+hoverG.querySelectorAll('.hover-zone').forEach(zone => {
+  zone.addEventListener('mouseenter', (e) => { if (!isMobile) showTip(parseInt(zone.dataset.cat), e); });
+  zone.addEventListener('mousemove', (e) => { if (!isMobile) moveTip(e); });
+  zone.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+
+  // Mobile: tap on chart axis
+  zone.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    showTip(parseInt(zone.dataset.cat), touch);
+    moveTip(touch);
+  });
+  zone.addEventListener('touchend', () => {
+    setTimeout(() => tooltip.classList.remove('show'), 1500);
+  });
+});
+
+function showTip(catIdx, e) {
+  const catName = CATEGORIES[catIdx].replace('\n', ' ');
+  const all = [
+    { name: HERO.name, score: HERO.scores[catIdx], isHero: true, color: 'var(--hero)' },
+    ...COMPETITORS.map(c => ({ name: c.name, score: c.scores[catIdx], isHero: false, color: c.color }))
+  ].sort((a, b) => b.score - a.score);
+
+  const rows = all.map(c => `
+    <div class="tooltip-row ${c.isHero ? 'is-hero' : ''}">
+      <div class="tooltip-swatch" style="background:${c.color}"></div>
+      <span class="tooltip-row-name" ${!c.isHero ? `style="color:${c.color}"` : ''}>${c.name}</span>
+      <span class="tooltip-row-score" ${!c.isHero ? `style="color:${c.color}"` : ''}>${c.score.toFixed(1)}</span>
+    </div>
+  `).join('');
+
+  tooltip.innerHTML = `<div class="tooltip-cat">${catName}</div>${rows}`;
+  tooltip.classList.add('show');
+  moveTip(e);
+}
+
+function moveTip(e) {
+  const rect = chartArea.getBoundingClientRect();
+  const clientX = e.clientX ?? e.pageX;
+  const clientY = e.clientY ?? e.pageY;
+  let x = clientX - rect.left + 16, y = clientY - rect.top - 10;
+  if (x + 190 > rect.width) x = clientX - rect.left - 190;
+  if (y + 220 > rect.height) y = rect.height - 230;
+  if (y < 0) y = 10;
+  if (x < 0) x = 10;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+</script>
+</body>
+</html>
